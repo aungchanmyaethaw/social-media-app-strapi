@@ -9,10 +9,16 @@ const Home = () => {
   const handleLogout = () => {
     setJwt("");
     setAuthedUser({});
-    localStorage.setItem("token", null);
-    localStorage.setItem("userData", JSON.stringify(null));
+    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
     navigate("/");
   };
+
+  useEffect(() => {
+    if (jwt === "") {
+      navigate("/");
+    }
+  }, [jwt]);
 
   return (
     <div>

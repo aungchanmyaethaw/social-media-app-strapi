@@ -11,7 +11,7 @@ export function AppProvider({ children }) {
   const navigate = useNavigate();
   const [jwt, setJwt] = useState("");
   const [authedUser, setAuthedUser] = useState({});
-  console.log(authedUser);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userData = JSON.parse(localStorage.getItem("userData"));
@@ -23,8 +23,10 @@ export function AppProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("token", jwt);
-    localStorage.setItem("userData", JSON.stringify(authedUser));
+    if (jwt != "" && authedUser != {}) {
+      localStorage.setItem("token", jwt);
+      localStorage.setItem("userData", JSON.stringify(authedUser));
+    }
   }, [jwt]);
 
   return (
