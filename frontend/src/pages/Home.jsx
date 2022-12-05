@@ -87,12 +87,12 @@ const Home = () => {
 
       <h1>{authedUser.username}</h1>
       {posts.length != 0 &&
-        posts.map((post) => (
+        posts.map(({ id, userId, username, content }) => (
           <div className="p-4 bg-secondary mb-4">
-            <h3>{post.id}</h3>
-            <h3>{post.userId}</h3>
-            <h3>{post.username}</h3>
-            <h2>{post.content}</h2>
+            <h3>{id}</h3>
+            <h3>{userId}</h3>
+            <h3>{username}</h3>
+            <h2>{content}</h2>
           </div>
         ))}
       <Button variant="danger" onClick={handleLogout}>
