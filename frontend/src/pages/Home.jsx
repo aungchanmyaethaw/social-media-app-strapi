@@ -24,7 +24,7 @@ const Home = () => {
     } else {
       getPosts();
     }
-  }, []);
+  }, [jwt]);
 
   async function getPosts() {
     try {
