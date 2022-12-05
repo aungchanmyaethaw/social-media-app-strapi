@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import { Button } from "react-bootstrap";
+import SinglePost from "../components/SinglePost";
 import axios from "axios";
 
 const Home = () => {
@@ -33,7 +34,7 @@ const Home = () => {
           Authorization: `Bearer ${jwt}`,
         },
       });
-      console.log(data);
+
       setPosts(
         data.data.map((post) => {
           return {
@@ -88,14 +89,7 @@ const Home = () => {
 
       <h1>{authedUser.username}</h1>
       {posts.length != 0 &&
-        posts.map((post) => (
-          <div className="p-4 bg-secondary mb-4" key={post.id}>
-            <h3>{post.id}</h3>
-            <h3>{post.userId}</h3>
-            <h3>{post.username}</h3>
-            <h2>{post.content}</h2>
-          </div>
-        ))}
+        posts.map((post) => <SinglePost {...post} key={post.id} />)}
       <Button variant="danger" onClick={handleLogout}>
         Logout
       </Button>

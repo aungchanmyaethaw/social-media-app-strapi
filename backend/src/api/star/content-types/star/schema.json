@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stars",
+  "info": {
+    "singularName": "star",
+    "pluralName": "stars",
+    "displayName": "star"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "post_id": {
+      "type": "integer"
+    },
+    "user_id": {
+      "type": "integer"
+    }
+  }
+}
