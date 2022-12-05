@@ -26,6 +26,7 @@ const Home = () => {
       navigate("/");
     } else {
       getPosts();
+      getStars();
     }
   }, [jwt]);
 
@@ -50,7 +51,7 @@ const Home = () => {
 
   const createPost = async (event) => {
     event.preventDefault();
-
+    console.log("auth", authedUser);
     const tempData = {
       content,
       user_id: JSON.stringify(authedUser.id),
@@ -76,7 +77,7 @@ const Home = () => {
     }
   };
 
-  const addStars = async (userId, id) => {
+  const addStars = async (id, userId) => {
     const tempData = {
       star: 1,
       post_id: id,
@@ -96,15 +97,15 @@ const Home = () => {
         }
       );
       console.log(res);
-      setStars([...stars, tempData]);
     } catch (e) {
       console.log(e);
     }
   };
   const getStars = async () => {
     try {
-      const { data } = await axios.post("http://localhost:1337/api/stars");
-      console.log(data);
+      const { data } = await axios.get("http://localhost:1337/api/stars");
+      console.log("stars:", data.meta.pagination.total);
+      setStars(data.meta.pagination.total);
     } catch (e) {
       console.log(e);
     }
@@ -119,13 +120,13 @@ const Home = () => {
 
       <h1>{authedUser.username}</h1>
       {posts.length != 0 &&
-        posts.map(({ id, userId, username, content }) => (
+        posts?.map(({ id, userId, username, content }) => (
           <div className="p-4 bg-secondary mb-4">
             <h3>postId: {id}</h3>
             <h3>userID: {userId}</h3>
             <h3>{username}</h3>
             <h2>{content}</h2>
-            <button onClick={() => addStars()}>Star</button>
+            <button onClick={() => addStars(id, userId)}>Star: {stars}</button>
           </div>
         ))}
       <Button variant="danger" onClick={handleLogout}>
