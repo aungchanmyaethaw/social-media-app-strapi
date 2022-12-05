@@ -4,9 +4,12 @@ import { useAppContext } from "../context/AppContext";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import { v4 as uuidV4 } from "uuid";
+
 const Home = () => {
   const { jwt, authedUser, setJwt, setAuthedUser } = useAppContext();
+  console.log(authedUser);
   const [posts, setPosts] = useState([]);
+  const [stars, setStars] = useState([]);
   const [content, setContent] = useState("");
   const navigate = useNavigate();
 
@@ -28,17 +31,13 @@ const Home = () => {
 
   async function getPosts() {
     try {
-      const { data } = await axios.get("http://localhost:1337/api/posts", {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
+      const { data } = await axios.get(`http://localhost:1337/api/posts`);
       console.log(data);
       setPosts(
         data.data.map((post) => {
           return {
             id: post.id,
-            userId: post.attributes.userId,
+            userId: post.attributes.user_id,
             username: post.attributes.username,
             content: post.attributes.content,
           };
@@ -49,18 +48,17 @@ const Home = () => {
     }
   }
 
-  async function createPost(event) {
+  const createPost = async (event) => {
     event.preventDefault();
 
     const tempData = {
       content,
-      id: uuidV4(),
-      userId: authedUser.id,
+      user_id: JSON.stringify(authedUser.id),
       username: authedUser.username,
     };
 
     try {
-      const res = axios.post(
+      const res = await axios.post(
         "http://localhost:1337/api/posts",
         {
           data: tempData,
@@ -76,7 +74,41 @@ const Home = () => {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
+
+  const addStars = async (userId, id) => {
+    const tempData = {
+      star: 1,
+      post_id: id,
+      user_id: userId,
+    };
+
+    try {
+      const res = await axios.post(
+        "http://localhost:1337/api/stars",
+        {
+          data: tempData,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+      console.log(res);
+      setStars([...stars, tempData]);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const getStars = async () => {
+    try {
+      const { data } = await axios.post("http://localhost:1337/api/stars");
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div>
@@ -89,10 +121,11 @@ const Home = () => {
       {posts.length != 0 &&
         posts.map(({ id, userId, username, content }) => (
           <div className="p-4 bg-secondary mb-4">
-            <h3>{id}</h3>
-            <h3>{userId}</h3>
+            <h3>postId: {id}</h3>
+            <h3>userID: {userId}</h3>
             <h3>{username}</h3>
             <h2>{content}</h2>
+            <button onClick={() => addStars()}>Star</button>
           </div>
         ))}
       <Button variant="danger" onClick={handleLogout}>

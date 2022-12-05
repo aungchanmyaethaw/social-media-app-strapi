@@ -16,10 +16,11 @@ const Login = () => {
     e.preventDefault();
     setIsdisabledButton(true);
     try {
-      const res = await axios.post("http://127.0.0.1:1337/api/auth/local", {
+      const res = await axios.post("http://localhost:1337/api/auth/local", {
         identifier: userData.email,
         password: userData.password,
       });
+      console.log(res);
       setJwt(res.data.jwt);
       setAuthedUser(res.data.user);
       navigate("/home");
