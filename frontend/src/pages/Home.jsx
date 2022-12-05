@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import { Button } from "react-bootstrap";
 import axios from "axios";
-import { v4 as uuidV4 } from "uuid";
+
 const Home = () => {
   const { jwt, authedUser, setJwt, setAuthedUser } = useAppContext();
   const [posts, setPosts] = useState([]);
@@ -24,7 +24,7 @@ const Home = () => {
     } else {
       getPosts();
     }
-  }, [jwt]);
+  }, []);
 
   async function getPosts() {
     try {
@@ -54,25 +54,26 @@ const Home = () => {
 
     const tempData = {
       content,
-      id: uuidV4(),
       userId: authedUser.id,
       username: authedUser.username,
     };
 
     try {
-      const res = axios.post(
-        "http://localhost:1337/api/posts",
-        {
-          data: tempData,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
+      axios
+        .post(
+          "http://localhost:1337/api/posts",
+          {
+            data: tempData,
           },
-        }
-      );
-      console.log(res);
-      setPosts([...posts, tempData]);
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
+        .then((res) =>
+          setPosts([...posts, { ...tempData, id: res.data.data.id }])
+        );
     } catch (e) {
       console.log(e);
     }
@@ -88,7 +89,7 @@ const Home = () => {
       <h1>{authedUser.username}</h1>
       {posts.length != 0 &&
         posts.map((post) => (
-          <div className="p-4 bg-secondary mb-4">
+          <div className="p-4 bg-secondary mb-4" key={post.id}>
             <h3>{post.id}</h3>
             <h3>{post.userId}</h3>
             <h3>{post.username}</h3>

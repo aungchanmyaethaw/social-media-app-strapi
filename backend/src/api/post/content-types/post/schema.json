@@ -4,7 +4,8 @@
   "info": {
     "singularName": "post",
     "pluralName": "posts",
-    "displayName": "Post"
+    "displayName": "post",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +16,11 @@
       "type": "richtext",
       "required": true
     },
-    "user_id": {
+    "userId": {
+      "type": "integer",
+      "required": true
+    },
+    "username": {
       "type": "string",
       "required": true
     }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "like",
     "pluralName": "likes",
-    "displayName": "Like"
+    "displayName": "like",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,7 +17,8 @@
       "required": true
     },
     "user_id": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }
