@@ -2,9 +2,9 @@ import React from 'react'
 
 const Whats = ({createPost , setContent}) => {
   return (
-<div className='w-full z-20 -mt-8 sticky top-[62px] bg-dark-200'>
+<div className='w-full z-20 -mt-10 sticky top-[56px] bg-dark-200'>
     <form
-    className="w-3/4 pr-12 pt-8 pb-6"
+    className="w-3/4 pr-12 pt-8 pb-4"
     onSubmit={createPost}>
       <div className="flex justify-end">
         <div className="avatar">
@@ -12,7 +12,7 @@ const Whats = ({createPost , setContent}) => {
             <img src="public/thumpnail.png" alt="Profile" />
           </div>
           <textarea 
-          className="textarea outline-1 focus:outline-offset-1 focus:outline-primary outline outline-primary shadow-md shadow-primary bg-dark-200 text-base text-white font-body w-[30rem] h-16 ml-2"
+          className="textarea outline-1 focus:ring-offset-1 focus:ring-1 focus:ring-primary/75 outline outline-primary shadow-md shadow-primary bg-dark-200 text-base text-white font-body w-[30rem] h-16 ml-2"
            placeholder="What's in your mind?"
            onChange={(e) => setContent(e.target.value)}
            ></textarea>
