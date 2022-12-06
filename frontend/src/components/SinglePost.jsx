@@ -27,6 +27,7 @@ const SinglePost = ({ id, userId, username, content }) => {
       const filteredArr = data.data.map((star) => {
         return { userId: star.attributes.user_id };
       });
+      console.log(filteredArr);
       setStars(filteredArr);
     } catch (e) {
       console.log(e);
