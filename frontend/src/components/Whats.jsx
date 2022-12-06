@@ -2,7 +2,10 @@ import React from 'react'
 
 const Whats = ({createPost , setContent}) => {
   return (
-<section className="w-3/4 pr-12 mt-6">
+// Form
+<form 
+className="w-3/4 pr-12 mt-6"
+onSubmit={createPost}>
   <div className="flex justify-end">
     <div className="avatar">
       <div className="w-12 h-12 rounded-full">
@@ -15,21 +18,23 @@ const Whats = ({createPost , setContent}) => {
        ></textarea>
     </div>
   </div>
+  {/* Button */}
   <div className="flex justify-end mx-auto space-x-2 mt-2">
     <button 
     className="btn btn-xs btn-outline border-primary text-primary"
+    type='reset'
     onClick={() => setContent('')}
     >
         Discard
     </button>
     <button 
     className="btn btn-xs hover:scale-110 bg-primary text-white"
-    onClick={createPost}
+    type='submit'
     >
         Post
     </button>
   </div>           
-</section>  )
+</form> )
 }
 
 export default Whats
