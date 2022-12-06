@@ -5,5 +5,10 @@
 
 /* need to remove comment */
 body {
-  background-color: #111;
+  background-color: #222;
+}
+
+*{
+  margin : 0;
+  padding : 0;
 }

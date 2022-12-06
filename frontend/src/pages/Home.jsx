@@ -74,12 +74,15 @@ const Home = () => {
   }
 
   return (
-    <main className="">
+    <main className="w-full">
       <Navbar username={authedUser.username} />
-      <div className="flex px-8">
+
+      <hr />
+
+      <div className="flex">
         <Sidebar />
-        <div className="">
-          <form onSubmit={createPost}>
+        <div className="w-full">
+          {/* <form onSubmit={createPost}>
             <textarea onChange={(e) => setContent(e.target.value)}></textarea>
             <div className="flex justify-end gap-4 text-white">
               <button type="submit">Submit</button>
@@ -87,7 +90,7 @@ const Home = () => {
                 Discard
               </button>
             </div>
-          </form>
+          </form> */}
           {posts.length != 0 &&
             posts.map((post) => <SinglePost {...post} key={post.id} />)}
         </div>

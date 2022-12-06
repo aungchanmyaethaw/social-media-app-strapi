@@ -7,6 +7,7 @@ module.exports = {
         primary: "#EE6640",
         "dark-200": "#222",
         "dark-100": "#444",
+        "white" : "#EEEEEE"
       },
       fontFamily: {
         head: ["PT Serif", "serif"],
@@ -14,5 +15,5 @@ module.exports = {
       },
     },
   },
-  plugins: [[require("daisyui")]],
+  plugins: [require('daisyui')],
 };

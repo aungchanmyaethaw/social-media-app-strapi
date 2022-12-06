@@ -2,9 +2,10 @@ import React from "react";
 
 const Search = () => {
   return (
-    <div>
-      <input type="text" />
-    </div>
+    <form className="flex items-center justify-center w-1/2">
+            <input type="text" placeholder="Type here" className="input input-md bg-white input-bordered w-full max-w-xs mr-2" ></input>
+            <button className="btn btn-sm btn-outline font-body">Search</button>
+          </form>
   );
 };
 

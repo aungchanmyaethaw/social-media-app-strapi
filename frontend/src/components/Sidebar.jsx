@@ -13,7 +13,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="basis-1/4 flex justify-between flex-col ">
+    <aside className="basis-1/4 ml-2 bg-dark-primary flex justify-between flex-col px-8">
       <div>{/* Sidebar Menu */}</div>
       <div>
         <button onClick={handleLogout} className="text-white">
