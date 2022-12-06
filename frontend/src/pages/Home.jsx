@@ -75,24 +75,16 @@ const Home = () => {
   }
 
   return (
-    <main className="w-full">
+    <main className="w-full h-full bg-dark-200">
       <Navbar username={authedUser.username} />
 
-      <hr />
+      {/* <hr className="head"/> */}
 
-      <div className="flex">
+      <div className="flex w-full h-full">
         <Sidebar />
-        <div className="w-full">
+        {/* New feeds */}
+        <div className="w-full bg-dark-200 ml-[3px] border-l-[3px] border-white">
           <Whats createPost={createPost} setContent={setContent} />
-          {/* <form onSubmit={createPost}>
-            <textarea onChange={(e) => setContent(e.target.value)}></textarea>
-            <div className="flex justify-end gap-4 text-white">
-              <button type="submit">Submit</button>
-              <button type="reset" onClick={() => setContent("")}>
-                Discard
-              </button>
-            </div>
-          </form> */}
           {posts.length != 0 &&
             posts.map((post) => <SinglePost {...post} key={post.id} />)}
         </div>
