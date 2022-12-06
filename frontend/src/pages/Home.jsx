@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import SinglePost from "../components/SinglePost";
 import Sidebar from "../components/Sidebar";
 import axios from "axios";
+import Whats from "../components/Whats";
 
 const Home = () => {
   const { jwt, authedUser } = useAppContext();
@@ -82,6 +83,7 @@ const Home = () => {
       <div className="flex">
         <Sidebar />
         <div className="w-full">
+          <Whats createPost={createPost} setContent={setContent} />
           {/* <form onSubmit={createPost}>
             <textarea onChange={(e) => setContent(e.target.value)}></textarea>
             <div className="flex justify-end gap-4 text-white">

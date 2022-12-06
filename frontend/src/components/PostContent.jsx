@@ -97,15 +97,18 @@ const PostContent = ({ id, userId, username, content }) => {
             <DotDropdown />
           </div>
 
-          <h2 className="mx-6 mt-2 text-left">
+          <p className="mx-6 mt-2 text-left text-indent-4 text-white">
             {content}
-          </h2>
+          </p>
           
-          {/* Star Button */}
-          <div className="flex font-body text-sm number-sm  w-full justify-between mt-1 px-10">
+          <div className="flex font-body text-sm text-gray-400 w-full justify-between mt-1 px-10">
             <div className="flex items-center">
-              {hasLiked ? <AiFillStar /> : null}
-              <p className='mt-1 ml-1'></p>
+              {(stars.length !== 0) ? 
+              <>
+                <AiFillStar color='#ee6640'/> 
+                <p className='mt-1 ml-1'> {stars.length} </p>
+              </>
+               : null }
             </div>
             
             <p>10 comments</p>

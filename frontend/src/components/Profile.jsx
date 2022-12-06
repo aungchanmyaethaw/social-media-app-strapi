@@ -1,6 +1,17 @@
 import React from "react";
+import { useAppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const Profile = ({ username, nav=false , singlePost=false }) => {
+  const { handleJwt, handleAuthedUser } = useAppContext();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    handleJwt("");
+    handleAuthedUser({});
+    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
+    navigate("/");
+  };
   return (
     <div className="flex items-center gap-1">
       {nav && <h2 className="font-body text-lg pb-0.5">{username}</h2>}
@@ -14,7 +25,12 @@ const Profile = ({ username, nav=false , singlePost=false }) => {
           </label>
           {nav && <div tabIndex={0} className="dropdown-content menu py-2 px-4 shadow bg-white rounded-box w-32 ">
             <button className="btn btn-outline btn-xs">Profile</button>
-            <button className='btn btn-error btn-xs mt-2 hover:scale-110'>Logout</button>
+            <button 
+            className='btn btn-error btn-xs mt-2 hover:scale-110'
+            onClick={handleLogout}
+            >
+              Logout
+            </button>
           </div>}
       </div>
       {singlePost ? <h2 className="font-body text-lg pb-6">{username}</h2> : null}
