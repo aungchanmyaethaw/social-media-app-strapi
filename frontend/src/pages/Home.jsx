@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
-import { Button } from "react-bootstrap";
+import Navbar from "../components/Navbar";
 import SinglePost from "../components/SinglePost";
+import Sidebar from "../components/Sidebar";
 import axios from "axios";
 
 const Home = () => {
-  const { jwt, authedUser, setJwt, setAuthedUser } = useAppContext();
+  const { jwt, authedUser } = useAppContext();
   const [posts, setPosts] = useState([]);
   const [content, setContent] = useState("");
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    setJwt("");
-    setAuthedUser({});
-    localStorage.removeItem("token");
-    localStorage.removeItem("userData");
-    navigate("/");
-  };
 
   useEffect(() => {
     if (jwt === "") {
@@ -81,20 +74,30 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={createPost}>
-        <textarea onChange={(e) => setContent(e.target.value)}></textarea>
-        <button type="submit">Submit</button>
-      </form>
-
-      <h1>{authedUser.username}</h1>
-      {posts.length != 0 &&
-        posts.map((post) => <SinglePost {...post} key={post.id} />)}
-      <Button variant="danger" onClick={handleLogout}>
-        Logout
-      </Button>
-    </div>
+    <main className="">
+      <Navbar username={authedUser.username} />
+      <div className="flex px-8">
+        <Sidebar />
+        <div className="">
+          <form onSubmit={createPost}>
+            <textarea onChange={(e) => setContent(e.target.value)}></textarea>
+            <div className="flex justify-end gap-4 text-white">
+              <button type="submit">Submit</button>
+              <button type="reset" onClick={() => setContent("")}>
+                Discard
+              </button>
+            </div>
+          </form>
+          {posts.length != 0 &&
+            posts.map((post) => <SinglePost {...post} key={post.id} />)}
+        </div>
+      </div>
+    </main>
   );
 };
 
 export default Home;
+
+// Navbar
+//SinglePost
+//Sidebar

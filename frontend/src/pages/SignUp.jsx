@@ -2,26 +2,32 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import axios from "axios";
-const Login = () => {
+const SignUp = () => {
+  const [userData, setUserData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const { handleJwt, handleAuthedUser } = useAppContext();
-  const [userData, setUserData] = useState({ email: "", password: "" });
   const [isDisabledBtn, setIsDisabledBtn] = useState(false);
-  const navigate = useNavigate();
-  // handle input value
   const handleChange = (key, value) => {
     setUserData({ ...userData, [key]: value });
   };
+  const navigate = useNavigate();
 
-  // handle Login
-
-  const handleLogin = async (e) => {
-    e.preventDefault(e);
+  // handle sign up
+  const handleSignUp = async (e) => {
+    e.preventDefault();
     setIsDisabledBtn(true);
     try {
-      const res = await axios.post("http://127.0.0.1:1337/api/auth/local", {
-        identifier: userData.email,
-        password: userData.password,
-      });
+      const res = await axios.post(
+        "http://127.0.0.1:1337/api/auth/local/register",
+        {
+          username: userData.username,
+          email: userData.email,
+          password: userData.password,
+        }
+      );
       handleJwt(res.data.jwt);
       handleAuthedUser(res.data.user);
       navigate("/home");
@@ -37,7 +43,7 @@ const Login = () => {
 
       <div className="flex justify-between max-w-[1024px] mx-auto mb-12">
         <h1 className="text-white">Logo</h1>
-        <h1 className="text-3xl text-white font-head">Login</h1>
+        <h1 className="text-3xl text-white font-head">Create your Account</h1>
       </div>
 
       {/* line */}
@@ -47,8 +53,25 @@ const Login = () => {
       {/* form  */}
       <form
         className="mt-12 max-w-[768px] mx-auto mb-12"
-        onSubmit={handleLogin}
+        onSubmit={handleSignUp}
       >
+        <div className="flex flex-col mb-8">
+          <label
+            htmlFor="username"
+            className="text-white mb-4 font-body text-lg"
+          >
+            Username
+          </label>
+          <input
+            type="text"
+            id="username"
+            className="bg-dark-100 py-2 px-2 text-light rounded-md caret-white text-white border-2 border-transparent focus:outline-none  focus:border-white"
+            required
+            autoFocus
+            onChange={(e) => handleChange("username", e.target.value)}
+          />
+        </div>
+
         <div className="flex flex-col mb-8">
           <label htmlFor="email" className="text-white mb-4 font-body text-lg">
             Email
@@ -56,9 +79,8 @@ const Login = () => {
           <input
             type="email"
             id="email"
-            className="bg-[#444] py-2 px-2 text-light rounded-md caret-white text-white border-2 border-transparent focus:outline-none  focus:border-white"
+            className="bg-dark-100 py-2 px-2 text-light rounded-md caret-white text-white border-2 border-transparent focus:outline-none  focus:border-white"
             required
-            autoFocus
             onChange={(e) => handleChange("email", e.target.value)}
           />
         </div>
@@ -73,7 +95,7 @@ const Login = () => {
           <input
             type="password"
             id="password"
-            className="bg-[#444] py-2 px-2 text-light rounded-md caret-white text-white border-2 border-transparent focus:outline-none  focus:border-white"
+            className="bg-dark-100 py-2 px-2 text-light rounded-md caret-white text-white border-2 border-transparent focus:outline-none  focus:border-white"
             required
             onChange={(e) => handleChange("password", e.target.value)}
           />
@@ -84,15 +106,15 @@ const Login = () => {
             className="text-white w-[15rem] bg-primary py-2 font-semibold text-lg rounded-3xl transition-colors duration-200 hover:bg-orange-700 font-head"
             type="submit"
             disabled={isDisabledBtn}
+            onClick={handleSignUp}
           >
-            Log in
+            Sign Up
           </button>
         </div>
       </form>
-
       <div className="text-primary flex gap-2 items-baseline justify-end font-body text-lg">
-        <p>Don't have an account? Sign up</p>
-        <Link className="underline" to="/signup">
+        <p>Already have an account? Login </p>
+        <Link className="underline" to="/">
           here
         </Link>
       </div>
@@ -100,4 +122,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
