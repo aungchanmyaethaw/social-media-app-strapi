@@ -1,17 +1,24 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useAppContext } from "../context/AppContext";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 const SinglePost = ({ id, userId, username, content }) => {
+  const navigate = useNavigate();
   const { jwt, authedUser } = useAppContext();
   const [stars, setStars] = useState([]);
+  const [commentCount, setCommentCount] = useState(0);
 
   useEffect(() => {
-    getLikes();
-  }, []);
+    if (jwt === "") {
+      navigate("/");
+    } else {
+      getLikes();
+      getCommentCount();
+    }
+  }, [jwt]);
 
-  //deletelikes
-  //setlikes
+  // --- Likes ---
 
   const getLikes = async () => {
     try {
@@ -82,21 +89,50 @@ const SinglePost = ({ id, userId, username, content }) => {
     }
   };
 
+  // --- Comments----
+
+  const getCommentCount = async () => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:1337/api/comments?filters[post_id][$eq]=${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      const tempCount = data.data.length;
+      setCommentCount(tempCount);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const hasLiked = stars.find((star) => star.userId === authedUser.id);
 
   return (
-    <article className="p-4 text-white mb-4">
-      <h3>{id}</h3>
-      <h3>{userId}</h3>
+    <article className="p-4 text-white mb-4 bg-slate-600">
       <h3>{username}</h3>
       <h2>{content}</h2>
-      {hasLiked ? (
-        <button onClick={deleteLike}>Remove Star</button>
-      ) : (
-        <button onClick={addLike}>AddStar</button>
-      )}
-
-      <p>{stars.length}</p>
+      <div className="flex gap-4">
+        {/* like */}
+        <div className="flex gap-2">
+          {hasLiked ? (
+            <button onClick={deleteLike}>Remove Star</button>
+          ) : (
+            <button onClick={addLike}>AddStar</button>
+          )}
+          <p>{stars.length}</p>
+        </div>
+        {/* comment */}
+        <Link to={`/postdetails/${id}`}>
+          <div className="flex gap-2">
+            <p>comments</p>
+            <span>{commentCount}</span>
+          </div>
+        </Link>
+      </div>
     </article>
   );
 };
