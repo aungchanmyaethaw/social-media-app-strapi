@@ -1,19 +1,19 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
 import Home from "./pages/Home";
-import { Container } from "react-bootstrap";
-
+import SignUp from "./pages/SignUp";
+import SinglePostDetails from "./pages/SinglePostDetails";
 const App = () => {
   return (
-    <Container>
+    <div>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/postdetails/:id" element={<SinglePostDetails />} />
       </Routes>
-    </Container>
+    </div>
   );
 };
 

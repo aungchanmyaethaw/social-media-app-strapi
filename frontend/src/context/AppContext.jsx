@@ -12,6 +12,8 @@ export function AppProvider({ children }) {
   const [jwt, setJwt] = useState("");
   const [authedUser, setAuthedUser] = useState({});
 
+  //  Auth
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userData = JSON.parse(localStorage.getItem("userData"));
@@ -29,8 +31,18 @@ export function AppProvider({ children }) {
     }
   }, [jwt]);
 
+  const handleJwt = (jwt) => {
+    setJwt(jwt);
+  };
+
+  const handleAuthedUser = (user) => {
+    setAuthedUser(user);
+  };
+
   return (
-    <AppContext.Provider value={{ setJwt, setAuthedUser, jwt, authedUser }}>
+    <AppContext.Provider
+      value={{ handleJwt, handleAuthedUser, jwt, authedUser }}
+    >
       {children}
     </AppContext.Provider>
   );

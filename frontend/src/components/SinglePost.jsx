@@ -85,7 +85,7 @@ const SinglePost = ({ id, userId, username, content }) => {
   const hasLiked = stars.find((star) => star.userId === authedUser.id);
 
   return (
-    <div className="p-4 bg-secondary mb-4">
+    <article className="p-4 text-white mb-4">
       <h3>{id}</h3>
       <h3>{userId}</h3>
       <h3>{username}</h3>
@@ -97,7 +97,7 @@ const SinglePost = ({ id, userId, username, content }) => {
       )}
 
       <p>{stars.length}</p>
-    </div>
+    </article>
   );
 };
 
