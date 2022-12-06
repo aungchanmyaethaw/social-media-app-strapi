@@ -91,22 +91,22 @@ const PostContent = ({ id, userId, username, content }) => {
   const hasLiked = stars.find((star) => star.userId === authedUser.id);
 
   return (
-    <div className="w-11/12 pl-6 pr-6 py-2 mx-auto bg-dark-100 rounded-lg -mt-8">
+    <div className="w-11/12 pl-6 pr-6 py-2 mx-auto bg-dark-200 outline outline-1 outline-primary shadow-md shadow-primary rounded-lg -mt-8">
           <div className="flex justify-between"> 
-            <p className="text-xs -mt-1">12.11.2022</p>
+            <p className="text-[10px] -mt-1 -ml-2 text-gray-400">12.11.2022</p>
             <DotDropdown />
           </div>
 
-          <p className="mx-6 mt-2 text-left text-indent-4 text-white">
+          <p className="mx-6 mt-2 text-left font-body text-indent-4 text-white">
             {content}
           </p>
           
-          <div className="flex font-body text-sm text-gray-400 w-full justify-between mt-1 px-10">
+          <div className="flex font-body text-sm text-gray-400 w-full justify-between px-10">
             <div className="flex items-center">
               {(stars.length !== 0) ? 
               <>
                 <AiFillStar color='#ee6640'/> 
-                <p className='mt-1 ml-1'> {stars.length} </p>
+                <p className='pt-1 ml-1'> {stars.length} </p>
               </>
                : null }
             </div>
@@ -140,8 +140,8 @@ const PostContent = ({ id, userId, username, content }) => {
             </div>
             <div className="w-1/2 flex items-center">
               <button className="mx-auto hover:scale-110 flex items-center active:text-primary active:scale-100">
-                  <BiComment className='active:item-primary'/>
-                  <p className="text-sm font-body mb-1 ml-2">Comment</p>                     
+                  <BiComment />
+                  <p className="text-sm font-body ml-2">Comment</p>                     
               </button>
             </div>
           </div>

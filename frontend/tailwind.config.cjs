@@ -5,12 +5,13 @@ module.exports = {
     extend: {
       colors: {
         primary: "#EE6640",
-        "dark-200": "#222",
-        "dark-100": "#444",
-        "white" : "#EEEEEE"
+        "dark-200": "#111",
+        "dark-100": "#222",
+        "white" : "#eeeeee"
+        
       },
       fontFamily: {
-        head: ["PT Serif", "serif"],
+        head: ["Roboto", "serif"],
         body: ["Josefin Sans", "sans-serif"],
       },
     },

@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <section className="container  mx-auto px-8 py-12">
+    <section className="container h-screen  mx-auto px-8 py-12">
       {/* Header */}
 
       <div className="flex justify-between max-w-[1024px] mx-auto mb-12">
