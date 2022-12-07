@@ -6,6 +6,7 @@ import axios from "axios";
 const DotDropdown = ({ id, userId }) => {
   const { jwt, authedUser, getPosts, posts, setPosts } = useAppContext();
 
+
   const deleteOwnPost = async () => {
     try {
       axios.delete(`http://localhost:1337/api/posts/${id}`, {
@@ -13,7 +14,11 @@ const DotDropdown = ({ id, userId }) => {
           Authorization: `Bearer ${jwt}`,
         },
       });
+
+
+
       const posts = await getPosts();
+
       getPosts();
     } catch (e) {
       console.log(e);

@@ -6,7 +6,7 @@ import SinglePost from "../components/SinglePost";
 import Sidebar from "../components/Sidebar";
 import axios from "axios";
 import Whats from "../components/Whats";
-
+import { handleDateFormat } from "../utils";
 const Home = () => {
   const { jwt, authedUser, getPosts, posts, setPosts } = useAppContext();
   const [content, setContent] = useState("");
@@ -42,16 +42,25 @@ const Home = () => {
             },
           }
         )
-        .then((res) =>
-          setPosts([...posts, { ...tempData, id: res.data.data.id }])
-        );
+        .then((res) => {
+          setPosts(
+            [
+              {
+                ...tempData,
+                id: res.data.data.id,
+                createdAt: handleDateFormat(res.data.data.attributes.createdAt),
+              },
+            ].concat([...posts])
+          );
+          setContent("");
+        });
     } catch (e) {
       console.log(e);
     }
   }
 
   return (
-    <main className="w-full h-full bg-dark-200">
+    <main className="w-full min-h-screen">
       <Navbar username={authedUser.username} />
 
       {/* <hr className="head"/> */}
@@ -59,8 +68,13 @@ const Home = () => {
       <div className="flex w-full h-full">
         <Sidebar />
         {/* New feeds */}
-        <div className="w-full bg-dark-200 ml-[3px] border-l-[3px] border-white">
-          <Whats createPost={createPost} setContent={setContent} />
+        <div className="basis-3/4 bg-dark-200 ml-[3px] border-l-[3px] border-white">
+          <Whats
+            createPost={createPost}
+            setContent={setContent}
+            content={content}
+            placeholder="What's in your mind?"
+          />
           {posts.length != 0 &&
             posts.map((post) => <SinglePost {...post} key={post.id} />)}
         </div>
