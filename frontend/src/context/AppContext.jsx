@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const AppContext = createContext();
 
@@ -11,6 +12,31 @@ export function AppProvider({ children }) {
   const navigate = useNavigate();
   const [jwt, setJwt] = useState("");
   const [authedUser, setAuthedUser] = useState({});
+
+  const [posts, setPosts] = useState("");
+
+  const getPosts = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:1337/api/posts", {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+
+      setPosts(
+        data.data.map((post) => {
+          return {
+            id: post.id,
+            userId: post.attributes.userId,
+            username: post.attributes.username,
+            content: post.attributes.content,
+          };
+        })
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   //  Auth
 
@@ -41,7 +67,15 @@ export function AppProvider({ children }) {
 
   return (
     <AppContext.Provider
-      value={{ handleJwt, handleAuthedUser, jwt, authedUser }}
+      value={{
+        handleJwt,
+        handleAuthedUser,
+        jwt,
+        authedUser,
+        getPosts,
+        posts,
+        setPosts,
+      }}
     >
       {children}
     </AppContext.Provider>
