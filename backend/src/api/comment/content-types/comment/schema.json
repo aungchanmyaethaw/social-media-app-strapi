@@ -12,19 +12,17 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "user_id": {
-      "type": "string",
-      "required": true
-    },
-    "post_id": {
-      "type": "string",
-      "required": true
-    },
     "content": {
       "type": "string"
     },
     "username": {
       "type": "string"
+    },
+    "post_id": {
+      "type": "integer"
+    },
+    "user_id": {
+      "type": "integer"
     }
   }
 }

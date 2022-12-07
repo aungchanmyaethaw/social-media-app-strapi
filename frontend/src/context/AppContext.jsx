@@ -1,5 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import { handleDateFormat } from "../utils";
 
 const AppContext = createContext();
 
@@ -11,6 +14,7 @@ export function AppProvider({ children }) {
   const navigate = useNavigate();
   const [jwt, setJwt] = useState("");
   const [authedUser, setAuthedUser] = useState({});
+  const [posts, setPosts] = useState([]);
 
   //  Auth
 
@@ -31,6 +35,33 @@ export function AppProvider({ children }) {
     }
   }, [jwt]);
 
+  async function getPosts() {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:1337/api/posts?sort=createdAt:desc",
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      setPosts(
+        data.data.map((post) => {
+          return {
+            id: post.id,
+            userId: post.attributes.userId,
+            username: post.attributes.username,
+            content: post.attributes.content,
+            createdAt: handleDateFormat(post.attributes.createdAt),
+          };
+        })
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   const handleJwt = (jwt) => {
     setJwt(jwt);
   };
@@ -41,7 +72,15 @@ export function AppProvider({ children }) {
 
   return (
     <AppContext.Provider
-      value={{ handleJwt, handleAuthedUser, jwt, authedUser }}
+      value={{
+        handleJwt,
+        handleAuthedUser,
+        jwt,
+        authedUser,
+        getPosts,
+        posts,
+        setPosts,
+      }}
     >
       {children}
     </AppContext.Provider>
