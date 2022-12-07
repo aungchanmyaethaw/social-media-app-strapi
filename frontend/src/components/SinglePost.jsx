@@ -12,7 +12,7 @@ const SinglePost = ({
 }) => {
   return (
     <article className="w-full p-4 text-white mb-4">
-      <section className="w-3/4 mx-auto mt-4">
+      <section className="w-3/4 mx-auto mt-12">
         {/* Profile */}
         <Profile username={username} singlePost={true} />
 

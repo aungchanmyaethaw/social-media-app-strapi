@@ -8,8 +8,7 @@ import axios from "axios";
 import Whats from "../components/Whats";
 import { handleDateFormat } from "../utils";
 const Home = () => {
-  const { jwt, authedUser } = useAppContext();
-  const [posts, setPosts] = useState([]);
+  const { jwt, authedUser, getPosts, posts, setPosts } = useAppContext();
   const [content, setContent] = useState("");
   const navigate = useNavigate();
 
@@ -20,33 +19,6 @@ const Home = () => {
       getPosts();
     }
   }, [jwt]);
-
-  async function getPosts() {
-    try {
-      const { data } = await axios.get(
-        "http://localhost:1337/api/posts?sort=createdAt:desc",
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      );
-
-      setPosts(
-        data.data.map((post) => {
-          return {
-            id: post.id,
-            userId: post.attributes.userId,
-            username: post.attributes.username,
-            content: post.attributes.content,
-            createdAt: handleDateFormat(post.attributes.createdAt),
-          };
-        })
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  }
 
   async function createPost(event) {
     event.preventDefault();
