@@ -120,11 +120,11 @@ const SinglePostDetails = () => {
   };
 
   return (
-    <section className="min-h-screen">
-      <Navbar username={authedUser.username} />
+    <section className="min-h-screen pb-10">
+      <Navbar username={authedUser.username} isCommentPage={true} />
       <div className="flex">
         <Sidebar />
-        <div className="basis-3/4 ml-[3px] border-l-[3px] border-white min-h-screen ">
+        <div className="basis-3/4 ml-[3px] border-l-[3px] border-white min-h-screen">
           <div className="mt-[32px] bg-dark-200">
             <SinglePost {...singlePost} isCommentPage={true} />
             <CommentInput

@@ -16,7 +16,7 @@ const CommentContent = ({ username, content, createdAt, postId, userId }) => {
       <Profile username={username} singlePost={true} />
       <div className="w-11/12 mx-auto pl-8 pr-6 bg-dark-200 outline outline-1 outline-primary shadow-md shadow-primary rounded-lg -mt-8">
         <div className="flex justify-between pt-2">
-          <p className="text-[12px] -mt-1 -ml-2 text-gray-400">{createdAt}</p>
+          <p className="text-[12px] -mt-1 -ml-2 text-gray-400 font-body ">{createdAt}</p>
           <div className="dropdown dropdown-left w-2 h-2 -mt-1">
             <label tabIndex={0}>
               <button>

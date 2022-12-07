@@ -38,11 +38,11 @@ const SignUp = () => {
   };
 
   return (
-    <section className="container min-h-screen  mx-auto px-8 py-12">
+    <section className="container min-h-screen  mx-auto px-8 py-8">
       {/* Header */}
 
-      <div className="flex justify-between max-w-[1024px] mx-auto mb-12">
-        <h1 className="text-white">Logo</h1>
+      <div className="flex justify-between items-center max-w-[1024px] mx-auto mb-8">
+        <img className="w-20 h-20 rounded-lg" src="../src/images/2.png" alt="logo" />
         <h1 className="text-3xl text-white font-head">Create your Account</h1>
       </div>
 
@@ -85,7 +85,7 @@ const SignUp = () => {
           />
         </div>
 
-        <div className="flex flex-col mb-16">
+        <div className="flex flex-col mb-10">
           <label
             htmlFor="password"
             className="text-white mb-4 font-body text-lg"
@@ -104,7 +104,7 @@ const SignUp = () => {
           </span>
         </div>
 
-        <div className="flex justify-center mb-24">
+        <div className="flex justify-center mb-12">
           <button
             className="text-white w-[15rem] bg-primary py-2 font-semibold text-lg rounded-3xl transition-colors duration-200 hover:bg-orange-700 font-head  "
             type="submit"
@@ -116,9 +116,9 @@ const SignUp = () => {
         </div>
       </form>
       <div className="text-primary flex gap-2 items-baseline justify-end font-body text-lg">
-        <p>Already have an account? Login </p>
+        <p>Already have an account?  </p>
         <Link className="underline" to="/">
-          here
+          Login here
         </Link>
       </div>
     </section>

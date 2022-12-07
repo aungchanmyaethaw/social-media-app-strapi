@@ -75,6 +75,7 @@ const Home = () => {
             content={content}
             placeholder="What's in your mind?"
           />
+          
           {posts.length !== 0 ? (
             posts.map((post) => <SinglePost {...post} key={post.id} />)
           ) : (

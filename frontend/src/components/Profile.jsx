@@ -4,7 +4,7 @@ const Profile = ({ username, nav = false, singlePost = false }) => {
   return (
     <div className="flex items-center gap-2 ml-2">
       {nav && (
-        <h2 className="font-body text-white text-xl pb-0.5 capitalize">
+        <h2 className="font-body text-white text-xl capitalize">
           {username}
         </h2>
       )}

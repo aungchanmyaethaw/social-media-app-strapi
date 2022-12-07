@@ -12,8 +12,8 @@ const Whats = ({ createPost, setContent, content }) => {
   }, [content]);
 
   return (
-    <div className="w-full z-20 -mt-10 sticky top-[56px] bg-dark-200">
-      <form className="w-3/4 pr-12 pt-8 pb-4" onSubmit={createPost}>
+    <div className="w-full z-20 mb-8 sticky top-[56px] bg-dark-200">
+      <form className="w-3/4 pr-12 pt-8" onSubmit={createPost}>
         <div className="flex justify-end">
           <div className="avatar">
             <div className="w-12 h-12 rounded-full outline outline-2 outline-primary">

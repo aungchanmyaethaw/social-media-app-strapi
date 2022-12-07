@@ -32,11 +32,11 @@ const Login = () => {
   };
 
   return (
-    <section className="container min-h-screen  mx-auto px-8 py-12">
+    <section className="container min-h-screen  mx-auto px-8 py-8">
       {/* Header */}
 
-      <div className="flex justify-between max-w-[1024px] mx-auto mb-12">
-        <h1 className="text-white">Logo</h1>
+      <div className="flex justify-between items-center max-w-[1024px] mx-auto mb-8">
+        <img className="w-20 h-20 rounded-lg" src="../src/images/2.png" alt="logo" />
         <h1 className="text-3xl text-white font-head">Login</h1>
       </div>
 
@@ -94,9 +94,9 @@ const Login = () => {
       </form>
 
       <div className="text-primary flex gap-2 items-baseline justify-end font-body text-lg">
-        <p>Don't have an account? Sign up</p>
+        <p>Don't have an account? </p>
         <Link className="underline" to="/signup">
-          here
+          Sign up here
         </Link>
       </div>
     </section>
