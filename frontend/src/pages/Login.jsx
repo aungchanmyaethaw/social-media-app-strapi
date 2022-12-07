@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <section className="container h-screen  mx-auto px-8 py-12">
+    <section className="container min-h-screen  mx-auto px-8 py-12">
       {/* Header */}
 
       <div className="flex justify-between max-w-[1024px] mx-auto mb-12">
@@ -77,6 +77,9 @@ const Login = () => {
             required
             onChange={(e) => handleChange("password", e.target.value)}
           />
+          <span className="font-body mt-2 text-white">
+            At least 8 characters.
+          </span>
         </div>
 
         <div className="flex justify-center mb-24">

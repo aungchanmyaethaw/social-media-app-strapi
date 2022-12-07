@@ -38,7 +38,7 @@ const SignUp = () => {
   };
 
   return (
-    <section className="container  mx-auto px-8 py-12">
+    <section className="container min-h-screen  mx-auto px-8 py-12">
       {/* Header */}
 
       <div className="flex justify-between max-w-[1024px] mx-auto mb-12">
@@ -65,7 +65,7 @@ const SignUp = () => {
           <input
             type="text"
             id="username"
-            className="bg-dark-100 py-2 px-2 text-light rounded-md caret-white text-white border-2 border-transparent focus:outline-none  focus:border-white"
+            className="bg-[#444] py-2 px-2 text-light rounded-md caret-white text-white border-2 border-transparent focus:outline-none  focus:border-white"
             required
             autoFocus
             onChange={(e) => handleChange("username", e.target.value)}
@@ -79,7 +79,7 @@ const SignUp = () => {
           <input
             type="email"
             id="email"
-            className="bg-dark-100 py-2 px-2 text-light rounded-md caret-white text-white border-2 border-transparent focus:outline-none  focus:border-white"
+            className="bg-[#444] py-2 px-2 text-light rounded-md caret-white text-white border-2 border-transparent focus:outline-none  focus:border-white"
             required
             onChange={(e) => handleChange("email", e.target.value)}
           />
@@ -95,15 +95,18 @@ const SignUp = () => {
           <input
             type="password"
             id="password"
-            className="bg-dark-100 py-2 px-2 text-light rounded-md caret-white text-white border-2 border-transparent focus:outline-none  focus:border-white"
+            className="bg-[#444] py-2 px-2 text-light rounded-md caret-white text-white border-2 border-transparent focus:outline-none  focus:border-white"
             required
             onChange={(e) => handleChange("password", e.target.value)}
           />
+          <span className="font-body mt-2 text-white">
+            At least 8 characters.
+          </span>
         </div>
 
         <div className="flex justify-center mb-24">
           <button
-            className="text-white w-[15rem] bg-primary py-2 font-semibold text-lg rounded-3xl transition-colors duration-200 hover:bg-orange-700 font-head"
+            className="text-white w-[15rem] bg-primary py-2 font-semibold text-lg rounded-3xl transition-colors duration-200 hover:bg-orange-700 font-head  "
             type="submit"
             disabled={isDisabledBtn}
             onClick={handleSignUp}
