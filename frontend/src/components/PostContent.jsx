@@ -141,14 +141,12 @@ const PostContent = ({
 
   return (
     <div className="w-11/12 pl-6 pr-6 py-2 mx-auto bg-dark-200 outline outline-1 outline-primary shadow-md shadow-primary rounded-lg -mt-8">
-
       <div className="flex justify-between py-2">
         <p className="text-[12px] -mt-1 -ml-2 text-gray-400">{createdAt}</p>
         {!isCommentPage && <DotDropdown userId={userId} id={id} />}
       </div>
 
       <p className="mx-6 mt-2 text-left font-body text-indent-4 text-white py-4">
-
         {content}
       </p>
 
@@ -162,12 +160,10 @@ const PostContent = ({
           ) : null}
         </div>
 
-
         {commentCount !== 0 ? <span>{comment(commentCount)}</span> : null}
       </div>
 
       <div className="flex h-2 w-11/12 justify-around mx-auto  border-t border-primary py-4">
-
         <div className="flex w-1/2 items-center">
           {hasLiked ? (
             <button
@@ -192,7 +188,6 @@ const PostContent = ({
           )}
         </div>
         <div className="w-1/2 flex items-center">
-
           {isCommentPage ? (
             <Link
               className="mx-auto hover:scale-110 flex items-center active:text-primary active:scale-100"
@@ -210,12 +205,6 @@ const PostContent = ({
               <p className="text-sm font-body ml-2">Comment</p>
             </Link>
           )}
-
-          <button className="mx-auto hover:scale-110 flex items-center active:text-primary active:scale-100">
-            <BiComment />
-            <p className="text-sm font-body ml-2">Comment</p>
-          </button>
-
         </div>
       </div>
     </div>

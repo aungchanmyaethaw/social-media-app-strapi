@@ -65,7 +65,7 @@ const Home = () => {
 
       {/* <hr className="head"/> */}
 
-      <div className="flex w-full h-full">
+      <div className="flex w-full min-h-screen">
         <Sidebar />
         {/* New feeds */}
         <div className="basis-3/4 bg-dark-200 ml-[3px] border-l-[3px] border-white">
@@ -75,8 +75,13 @@ const Home = () => {
             content={content}
             placeholder="What's in your mind?"
           />
-          {posts.length != 0 &&
-            posts.map((post) => <SinglePost {...post} key={post.id} />)}
+          {posts.length !== 0 ? (
+            posts.map((post) => <SinglePost {...post} key={post.id} />)
+          ) : (
+            <p className="text-4xl text-primary mt-[5rem]  font-head text-center">
+              Currently Empty...
+            </p>
+          )}
         </div>
       </div>
     </main>

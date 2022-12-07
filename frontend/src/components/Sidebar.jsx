@@ -20,7 +20,7 @@ const Sidebar = () => {
       <div className="w-3/4 flex justify-start">
         <button
           onClick={handleLogout}
-          className="w-full rounded-full bg-primary hover:bg-white hover:scale-110 hover:text-dark-200 py-1 text-white font-head text-lg"
+          className="text-white w-[15rem] bg-primary py-2 font-semibold text-lg rounded-3xl transition-colors duration-200 hover:bg-orange-700 font-head"
         >
           Logout
         </button>

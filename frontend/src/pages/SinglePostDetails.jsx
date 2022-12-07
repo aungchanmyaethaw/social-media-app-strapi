@@ -68,6 +68,7 @@ const SinglePostDetails = () => {
           return {
             id: comment.id,
             userId: comment.attributes.user_id,
+            postId: comment.attributes.post_id,
             username: comment.attributes.username,
             content: comment.attributes.content,
             createdAt: handleDateFormat(comment.attributes.createdAt),
@@ -119,7 +120,7 @@ const SinglePostDetails = () => {
   };
 
   return (
-    <section className="min-h-screen border ">
+    <section className="min-h-screen">
       <Navbar username={authedUser.username} />
       <div className="flex">
         <Sidebar />
@@ -138,7 +139,9 @@ const SinglePostDetails = () => {
                 <CommentContent key={comment.id} {...comment} />
               ))
             ) : (
-              <p className="text-xl font-head text-primary">No Comment...</p>
+              <p className="text-xl font-head text-primary text-center">
+                No Comment...
+              </p>
             )}
           </section>
         </div>

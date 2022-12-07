@@ -16,31 +16,6 @@ export function AppProvider({ children }) {
   const [authedUser, setAuthedUser] = useState({});
   const [posts, setPosts] = useState([]);
 
-
-  const getPosts = async () => {
-    try {
-      const { data } = await axios.get("http://localhost:1337/api/posts", {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      });
-
-      setPosts(
-        data.data.map((post) => {
-          return {
-            id: post.id,
-            userId: post.attributes.userId,
-            username: post.attributes.username,
-            content: post.attributes.content,
-          };
-        })
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-
   //  Auth
 
   useEffect(() => {
