@@ -38,11 +38,11 @@ const DotDropdown = ({ id, userId }) => {
         tabIndex={0}
         className="dropdown-content menu py-2 px-3 shadow bg-dark-200 outline outline-1 outline-white rounded-box "
       >
-        <button className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2">
+        { authedUser.id === userId && <button className="btn btn-outline mb-2 hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2">
           Edit
-        </button>
+        </button>}
         <button
-          className="btn btn-xs bg-primary text-white hover:bg-orange-700 mt-2 hover:scale-110 h-2"
+          className="btn btn-xs bg-primary text-white hover:bg-orange-700 hover:scale-110 h-2"
           onClick={userId === authedUser.id ? deleteOwnPost : hidePost}
         >
           {userId === authedUser.id ? "Delete" : "Hide"}
