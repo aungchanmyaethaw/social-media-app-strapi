@@ -15,6 +15,7 @@ export function AppProvider({ children }) {
   const [jwt, setJwt] = useState("");
   const [authedUser, setAuthedUser] = useState({});
   const [posts, setPosts] = useState([]);
+  const [hidePostsData, setHidePostsData] = useState([]);
 
   //  Auth
 
@@ -62,6 +63,30 @@ export function AppProvider({ children }) {
     }
   }
 
+  async function getHidePostsData() {
+    try {
+    const { data } = await axios.get(
+        "http://localhost:1337/api/hides",
+        {
+          headers : {
+            Authorization : `Bearer ${jwt}`,
+          }
+        }
+    ) 
+    setHidePostsData(
+      data.data.map((item) => {
+        return {
+          hidePostId : item.attributes.postId,
+          hideUserId : item.attributes.userId,
+        }         
+      })
+    )  
+    }
+    catch (e) {
+        console.log(e);
+    }
+  }
+
   const handleJwt = (jwt) => {
     setJwt(jwt);
   };
@@ -80,6 +105,9 @@ export function AppProvider({ children }) {
         getPosts,
         posts,
         setPosts,
+        getHidePostsData,
+        hidePostsData,
+        setHidePostsData,
       }}
     >
       {children}

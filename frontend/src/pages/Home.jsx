@@ -8,7 +8,7 @@ import axios from "axios";
 import Whats from "../components/Whats";
 import { handleDateFormat } from "../utils";
 const Home = () => {
-  const { jwt, authedUser, getPosts, posts, setPosts } = useAppContext();
+  const { jwt, authedUser, getPosts, posts, setPosts, getHidePostsData, hidePostsData } = useAppContext();
   const [content, setContent] = useState("");
   const navigate = useNavigate();
 
@@ -17,8 +17,33 @@ const Home = () => {
       navigate("/");
     } else {
       getPosts();
+      getHidePostsData();     
+      // const isUserHidesPost = hidePostsData.filter((item) => item.hideUserId === authedUser.id)
+      // if (isUserHidesPost){
+      //       const filterHidedPosts = posts.filter((post) => 
+      //       {
+      //         return !hidePostsData.find((item) => {
+      //           return post.id === item.hidePostId;
+      //         })
+      //       }
+      //       )
+      //       setPosts([filterHidedPosts]);
+      //     }
     }
   }, [jwt]);
+
+    const isUserHidesPost = hidePostsData.filter((item) => item.hideUserId === authedUser.id)
+     if (isUserHidesPost){
+          const filterHidedPosts = posts.filter((post) => 
+          {
+            return !hidePostsData.find((item) => {
+              return post.id === item.hidePostId;
+            })
+          }
+          )
+          setPosts([filterHidedPosts]);
+        }
+    
 
   async function createPost(event) {
     event.preventDefault();

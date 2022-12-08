@@ -13,39 +13,39 @@ import { BsCollection } from 'react-icons/bs'
 const SideBarList = () => {
   return (
     <>
-      <div className="flex text-primary flex-start w-3/4 text-lg font-head gap-10">
+      <div className="flex text-primary flex-start w-3/4 text-lg font-head gap-8">
         <FaHome className="w-6 h-6" />
         <h2>NewFeeds</h2>
       </div>
-      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-10">
+      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-8">
         <RiMessengerLine className="w-6 h-6" />
         <h2>Messenger</h2>
       </div>
-      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-10">
+      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-8">
         <ImFilm className="w-6 h-6" />
         <h2>Watch</h2>
       </div>
-      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-10">
+      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-8">
         <RiPagesLine className="w-6 h-6" />
         <h2>Pages</h2>
       </div>
-      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-10">
+      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-8">
         <CgGames className="w-6 h-6" />
         <h2>Games</h2>
       </div>
-      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-10">
+      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-8">
         <FaWpexplorer className="w-6 h-6" />
         <h2>Explore</h2>
       </div>
-      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-10">
+      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-8">
         <BsCalendar2Event className="w-6 h-6" />
         <h2>Events</h2>
       </div>
-      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-10">
+      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-8">
         <MdOutlineGroup className="w-6 h-6" />
         <h2>Groups</h2>
       </div>
-      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-10">
+      <div className="flex text-white flex-start w-3/4 text-lg font-head gap-8">
         <BsCollection className="w-6 h-6" />
         <h2>Collections</h2>
       </div>

@@ -23,8 +23,32 @@ const DotDropdown = ({ id, userId }) => {
   };
 
   const hidePost = () => {
-    const filteredPosts = posts.filter((post) => post.id != id);
-    setPosts(filteredPosts);
+    const tempData = {
+      postId : id,
+      userId : authedUser.id
+    }
+    try {
+      axios
+          .post(
+            "http://localhost:1337/api/hides",
+            {
+              data : tempData
+            },
+            {
+              header : {
+                Authorization : `Bearer ${jwt}`
+              }
+            }
+          )
+          .then(() => {
+            const filteredPosts = posts.filter((post) => post.id != id);
+            setPosts(filteredPosts);
+          })
+    }
+    catch (e) {
+      console.log(e);
+    }
+    
   };
 
   return (
