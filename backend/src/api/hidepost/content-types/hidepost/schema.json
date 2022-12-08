@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hideposts",
+  "info": {
+    "singularName": "hidepost",
+    "pluralName": "hideposts",
+    "displayName": "hidepost",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "post_id": {
+      "type": "integer"
+    },
+    "user_id": {
+      "type": "integer"
+    }
+  }
+}

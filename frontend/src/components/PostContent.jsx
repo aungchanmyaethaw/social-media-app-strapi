@@ -142,6 +142,8 @@ const PostContent = ({
   return (
     <div className="w-11/12 pl-6 pr-6 mx-auto bg-dark-200 outline outline-1 outline-primary shadow-md shadow-primary rounded-lg -mt-8">
       <div className="flex justify-between pt-2">
+        <p>{id}</p>
+        <p>{userId}</p>
         <p className="text-[12px] -mt-1 text-gray-400 font-body">{createdAt}</p>
         {!isCommentPage && <DotDropdown userId={userId} id={id} />}
       </div>
@@ -162,7 +164,6 @@ const PostContent = ({
 
         {commentCount !== 0 ? <span>{comment(commentCount)}</span> : null}
       </div>
-      
 
       <div className="flex h-2 w-11/12 justify-around mx-auto  border-t border-primary py-4">
         <div className="flex w-1/2 items-center">
