@@ -2,7 +2,13 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { useAppContext } from "../context/AppContext";
-const CommentDotDropdown = ({ commentId, postId, userId, setComments }) => {
+const CommentDotDropdown = ({
+  commentId,
+  postId,
+  userId,
+  setComments,
+  getWantToEditComment,
+}) => {
   const { authedUser, jwt } = useAppContext();
   const [postOwnerId, setPostOwnerId] = useState(0);
 
@@ -58,7 +64,10 @@ const CommentDotDropdown = ({ commentId, postId, userId, setComments }) => {
         className="dropdown-content menu py-2 px-3 shadow bg-dark-200 outline outline-1 outline-white rounded-box "
       >
         {authedUser.id === userId && (
-          <button className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2">
+          <button
+            className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
+            onClick={() => getWantToEditComment(commentId)}
+          >
             Edit
           </button>
         )}

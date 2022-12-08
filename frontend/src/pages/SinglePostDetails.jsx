@@ -22,6 +22,8 @@ const SinglePostDetails = () => {
   });
   const [content, setContent] = useState("");
   const [comments, setComments] = useState([]);
+  const [wantToEditId, setWantToEditId] = useState(null);
+  const [wantToEditComment, setWantToEditComment] = useState({});
   useEffect(() => {
     if (jwt === "") {
       navigate("/");
@@ -71,7 +73,7 @@ const SinglePostDetails = () => {
             postId: comment.attributes.post_id,
             username: comment.attributes.username,
             content: comment.attributes.content,
-            createdAt: handleDateFormat(comment.attributes.createdAt),
+            createdAt: handleDateFormat(comment.attributes.updatedAt),
           };
         })
       );
@@ -101,11 +103,51 @@ const SinglePostDetails = () => {
           },
         }
       );
-
+      setContent("");
       getComments();
     } catch (e) {
       console.log(e);
     }
+  };
+  const editComment = async (e) => {
+    e.preventDefault();
+    const tempData = {
+      post_id: tempId,
+      user_id: authedUser.id,
+      content,
+      username: authedUser.username,
+    };
+    try {
+      await axios.put(
+        `http://localhost:1337/api/comments/${wantToEditId}`,
+        {
+          data: tempData,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+      handleEditCancel();
+      getComments();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getWantToEditComment = (commentId) => {
+    setWantToEditId(commentId);
+    const filteredComment = comments.find(
+      (comment) => comment.id === commentId
+    );
+    setWantToEditComment(filteredComment);
+  };
+
+  const handleEditCancel = () => {
+    setContent("");
+    setWantToEditId(false);
+    setWantToEditComment({});
   };
 
   return (
@@ -120,6 +162,11 @@ const SinglePostDetails = () => {
               content={content}
               setContent={setContent}
               addComments={addComments}
+              wantToEditComment={wantToEditComment}
+              setWantToEditComment={setWantToEditComment}
+              wantToEditId={wantToEditId}
+              setWantToEditId={setWantToEditId}
+              editComment={editComment}
             />
           </div>
           <section className="mt-4 ">
@@ -129,6 +176,7 @@ const SinglePostDetails = () => {
                   key={comment.id}
                   {...comment}
                   setComments={setComments}
+                  getWantToEditComment={getWantToEditComment}
                 />
               ))
             ) : (
