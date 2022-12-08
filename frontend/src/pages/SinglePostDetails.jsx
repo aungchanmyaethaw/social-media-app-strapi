@@ -90,30 +90,19 @@ const SinglePostDetails = () => {
     };
 
     try {
-      await axios
-        .post(
-          "http://localhost:1337/api/comments",
-          {
-            data: tempData,
+      await axios.post(
+        "http://localhost:1337/api/comments",
+        {
+          data: tempData,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          }
-        )
-        .then((res) => {
-          setComments(
-            [
-              {
-                ...tempData,
-                id: res.data.data.id,
-                createdAt: handleDateFormat(res.data.data.attributes.createdAt),
-              },
-            ].concat([...comments])
-          );
-          setContent("");
-        });
+        }
+      );
+
+      getComments();
     } catch (e) {
       console.log(e);
     }
@@ -124,7 +113,7 @@ const SinglePostDetails = () => {
       <Navbar username={authedUser.username} isCommentPage={true} />
       <div className="flex">
         <Sidebar />
-        <div className="basis-3/4 ml-[3px] border-l-[3px] border-white min-h-screen">
+        <div className="basis-3/4 ml-[3px]  min-h-screen">
           <div className="mt-[32px] bg-dark-200">
             <SinglePost {...singlePost} isCommentPage={true} />
             <CommentInput
@@ -136,7 +125,11 @@ const SinglePostDetails = () => {
           <section className="mt-4 ">
             {comments.length !== 0 ? (
               comments?.map((comment) => (
-                <CommentContent key={comment.id} {...comment} />
+                <CommentContent
+                  key={comment.id}
+                  {...comment}
+                  setComments={setComments}
+                />
               ))
             ) : (
               <p className="text-xl mx-auto font-head text-primary text-center">
