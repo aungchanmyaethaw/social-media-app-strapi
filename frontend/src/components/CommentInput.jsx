@@ -1,6 +1,15 @@
 import { useState, useEffect } from "react";
 
-const CommentInput = ({ content, setContent, addComments }) => {
+const CommentInput = ({
+  content,
+  setContent,
+  addComments,
+  wantToEditComment,
+  setWantToEditComment,
+  wantToEditId,
+  setWantToEditId,
+  editComment,
+}) => {
   const [isEmpty, setIsEmpty] = useState(true);
 
   useEffect(() => {
@@ -10,6 +19,18 @@ const CommentInput = ({ content, setContent, addComments }) => {
       setIsEmpty(false);
     }
   }, [content]);
+
+  useEffect(() => {
+    if (wantToEditId) {
+      setContent(wantToEditComment.content);
+    }
+  }, [wantToEditId]);
+
+  const handleEditCancel = () => {
+    setContent("");
+    setWantToEditId(false);
+    setWantToEditComment({});
+  };
 
   return (
     <div className="w-full flex-start">
@@ -28,23 +49,43 @@ const CommentInput = ({ content, setContent, addComments }) => {
           </div>
         </div>
         {/* Button */}
-        <div className="flex justify-end mx-auto space-x-2 mt-4">
-          <button
-            className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
-            type="reset"
-            onClick={() => setContent("")}
-          >
-            Clear
-          </button>
-          <button
-            className="btn btn-xs hover:scale-110 hover:bg-white hover:text-black bg-primary text-white"
-            type="submit"
-            onClick={addComments}
-            disabled={isEmpty}
-          >
-            Comment
-          </button>
-        </div>
+        {wantToEditId ? (
+          <div className="flex justify-end mx-auto space-x-2 mt-4">
+            <button
+              className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
+              type="reset"
+              onClick={handleEditCancel}
+            >
+              Cancel Edit
+            </button>
+            <button
+              className="btn btn-xs hover:scale-110 hover:bg-white hover:text-black bg-primary text-white"
+              type="submit"
+              onClick={editComment}
+              disabled={isEmpty}
+            >
+              Edit Comment
+            </button>
+          </div>
+        ) : (
+          <div className="flex justify-end mx-auto space-x-2 mt-4">
+            <button
+              className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
+              type="reset"
+              onClick={() => setContent("")}
+            >
+              Clear
+            </button>
+            <button
+              className="btn btn-xs hover:scale-110 hover:bg-white hover:text-black bg-primary text-white"
+              type="submit"
+              onClick={addComments}
+              disabled={isEmpty}
+            >
+              Comment
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );
