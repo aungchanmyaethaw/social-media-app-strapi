@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useAppContext } from "../context/AppContext";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineStar } from "react-icons/ai";
 import { AiFillStar } from "react-icons/ai";
 import { FiHome } from "react-icons/fi";
@@ -22,6 +22,8 @@ const PostContent = ({
   const { jwt, authedUser } = useAppContext();
   const [stars, setStars] = useState([]);
   const [commentCount, setCommentCount] = useState(0);
+  const location = useLocation();
+
   useEffect(() => {
     if (jwt === "") {
       navigate("/");
@@ -146,7 +148,7 @@ const PostContent = ({
         {!isCommentPage && <DotDropdown userId={userId} id={id} />}
       </div>
 
-      <p className="mx-6 mt-2 text-left font-body text-indent-4 text-white pb-2">
+      <p className="mx-6 mt-2 text-left font-body break-words indent-6 text-white pb-2">
         {content}
       </p>
 
@@ -191,7 +193,7 @@ const PostContent = ({
           {isCommentPage ? (
             <Link
               className="mx-auto hover:scale-110 flex items-center active:text-primary active:scale-100"
-              to="/home"
+              to={location.state}
             >
               <FiHome />
               <p className="text-sm font-body ml-2">Back to Home</p>
@@ -200,6 +202,7 @@ const PostContent = ({
             <Link
               className="mx-auto hover:scale-110 flex items-center active:text-primary active:scale-100"
               to={`/postdetails/${id}`}
+              state= {location.pathname}
             >
               <BiComment />
               <p className="text-sm font-body ml-2">Comment</p>

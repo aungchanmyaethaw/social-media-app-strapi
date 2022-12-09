@@ -65,7 +65,7 @@ const CommentDotDropdown = ({
       >
         {authedUser.id === userId && (
           <button
-            className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
+            className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 mb-2 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
             onClick={() => getWantToEditComment(commentId)}
           >
             Edit
@@ -73,7 +73,7 @@ const CommentDotDropdown = ({
         )}
         {isAllowed && (
           <button
-            className="btn btn-xs bg-primary text-white hover:bg-orange-700 hover:scale-110 h-2 mt-2"
+            className="btn btn-xs bg-primary text-white hover:bg-orange-700 hover:scale-110 h-2"
             onClick={deleteComment}
           >
             Delete
