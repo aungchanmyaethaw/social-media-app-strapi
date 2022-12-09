@@ -12,7 +12,7 @@ const Whats = ({ createPost, setContent, content }) => {
   }, [content]);
 
   return (
-    <div className="w-full z-20 mb-8 sticky top-[56px] bg-dark-200">
+    <div className="w-full z-20 mb-10 sticky top-[56px] bg-dark-200">
       <form className="w-3/4 pr-12 pt-8" onSubmit={createPost}>
         <div className="flex justify-end">
           <div className="avatar">
