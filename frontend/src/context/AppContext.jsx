@@ -46,26 +46,26 @@ export function AppProvider({ children }) {
         }
       );
 
-      // const { data: hideposts } = await axios.get(
-      //   "http://localhost:1337/api/hideposts",
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${jwt}`,
-      //     },
-      //   }
-      // );
+      const { data: hideposts } = await axios.get(
+        "http://localhost:1337/api/hideposts",
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
 
-      // const tempArr = await posts.data.filter((post) => {
-      //   return !hideposts.data.some((hiddenPost) => {
-      //     return (
-      //       hiddenPost.attributes.post_id === post.id &&
-      //       hiddenPost.attributes.user_id === authedUser.id
-      //     );
-      //   });
-      // });
+      const tempArr = await posts.data.filter((post) => {
+        return !hideposts.data.some((hiddenPost) => {
+          return (
+            hiddenPost.attributes.post_id === post.id &&
+            hiddenPost.attributes.user_id === authedUser.id
+          );
+        });
+      });
 
       setPosts(
-        posts.data.map((post) => {
+        tempArr.map((post) => {
           return {
             id: post.id,
             userId: post.attributes.userId,

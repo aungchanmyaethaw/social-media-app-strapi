@@ -47,9 +47,9 @@ export const EditPost = ({ postId, setShowEditModal }) => {
   };
 
   return (
-    <div className="bg-blend-darken backdrop-blur flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-blend-darken">
+    <div className=" backdrop-blur flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-blend-darken">
       <div className="relative w-auto my-6 mx-auto max-w-3xl bg-blend-overlay">
-        <div className="border-0 rounded-lg relative flex flex-col w-full bg-dark-200 outline outline-white shadow-md shadow-primary bg-dark-200">
+        <div className="border-0 rounded-lg relative flex flex-col w-full  outline outline-white shadow-md shadow-primary bg-dark-200">
           <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
             <h3 className="text-3xl font=semibold">Edit</h3>
             <button

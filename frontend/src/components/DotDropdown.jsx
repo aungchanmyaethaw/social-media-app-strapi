@@ -43,11 +43,11 @@ const DotDropdown = ({ id, userId }) => {
         }
       );
       getPosts();
+      const filteredPosts = posts.filter((post) => post.id != id);
+      setPosts(filteredPosts);
     } catch (e) {
       console.log(e);
     }
-    const filteredPosts = posts.filter((post) => post.id != id);
-    setPosts(filteredPosts);
   };
 
   return (
