@@ -17,7 +17,6 @@ export function AppProvider({ children }) {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
 
-
   //  Auth
 
   useEffect(() => {
@@ -40,7 +39,7 @@ export function AppProvider({ children }) {
   async function getPosts() {
     try {
       const { data: posts } = await axios.get(
-        "http://localhost:1337/api/posts?sort=createdAt:desc",
+        "http://localhost:1337/api/posts?sort=updatedAt:desc",
         {
           headers: {
             Authorization: `Bearer ${jwt}`,
@@ -73,7 +72,7 @@ export function AppProvider({ children }) {
             userId: post.attributes.userId,
             username: post.attributes.username,
             content: post.attributes.content,
-            createdAt: handleDateFormat(post.attributes.createdAt),
+            createdAt: handleDateFormat(post.attributes.updatedAt),
           };
         })
       );
@@ -85,7 +84,7 @@ export function AppProvider({ children }) {
   const getComments = async (id) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:1337/api/comments?filters[post_id][$eq]=${id}&sort=createdAt:desc`,
+        `http://localhost:1337/api/comments?filters[post_id][$eq]=${id}&sort=updatedAt:desc`,
         {
           headers: {
             Authorization: `Bearer ${jwt}`,
@@ -132,7 +131,6 @@ export function AppProvider({ children }) {
         comments,
         setComments,
       }}
-
     >
       {children}
     </AppContext.Provider>
