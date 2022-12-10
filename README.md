@@ -16,6 +16,7 @@ Strapi is used to handle database. UseContext hook is used to store client side 
 
 ##### NewsFeed Page
 
+- Able to see all posts as well as other people post (who are registered memebers of our app)
 - Able to add post
 - Able to give star (if they like the post)
 - Able to delete their own post
@@ -28,7 +29,8 @@ Strapi is used to handle database. UseContext hook is used to store client side 
 ##### Comment Page
 
 - Able to add comment under other people' post
-- Able to see other people post (who are registered memebers of our app)
+- Able to delete comment
+- Able to edit comment
 
 ### Tech Stack
 
