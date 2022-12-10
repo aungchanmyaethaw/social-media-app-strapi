@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import SinglePostDetails from "./pages/SinglePostDetails";
 import SideBarPage from "./components/SideBarPage";
-import NotFound from "./components/NotFound";
 
 const App = () => {
   return (
