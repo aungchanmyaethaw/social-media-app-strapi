@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { useAppContext } from "../context/AppContext";
 import axios from "axios";
+import { EditPost } from "./EditPost";
 
 const DotDropdown = ({ id, userId }) => {
+  const [showEditModal, setShowEditModal] = useState(false);
   const { jwt, authedUser, getPosts, posts, setPosts } = useAppContext();
 
   const deleteOwnPost = async () => {
@@ -60,10 +62,14 @@ const DotDropdown = ({ id, userId }) => {
         className="dropdown-content menu py-2 px-3 shadow bg-dark-200 outline outline-1 outline-white rounded-box "
       >
         {authedUser.id === userId && (
-          <button className="btn btn-outline mb-2 hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2">
+          <button
+            className="btn btn-outline mb-2 hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
+            onClick={() => setShowEditModal(true)}
+          >
             Edit
           </button>
         )}
+
         <button
           className="btn btn-xs bg-primary text-white hover:bg-orange-700 hover:scale-110 h-2"
           onClick={userId === authedUser.id ? deleteOwnPost : hidePost}
@@ -71,6 +77,9 @@ const DotDropdown = ({ id, userId }) => {
           {userId === authedUser.id ? "Delete" : "Hide"}
         </button>
       </div>
+      {showEditModal && (
+        <EditPost postId={id} setShowEditModal={setShowEditModal} />
+      )}
     </div>
   );
 };
