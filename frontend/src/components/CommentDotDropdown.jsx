@@ -2,15 +2,21 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { useAppContext } from "../context/AppContext";
+import { EditModal } from "./EditModal";
+
+
 const CommentDotDropdown = ({
   commentId,
   postId,
   userId,
   setComments,
-  getWantToEditComment,
+  content,
+  getComments
+  // getWantToEditComment,
 }) => {
   const { authedUser, jwt } = useAppContext();
   const [postOwnerId, setPostOwnerId] = useState(0);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   useEffect(() => {
     getSinglepostId();
@@ -66,7 +72,7 @@ const CommentDotDropdown = ({
         {authedUser.id === userId && (
           <button
             className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
-            onClick={() => getWantToEditComment(commentId)}
+            onClick={() => setShowEditModal(true)}
           >
             Edit
           </button>
@@ -80,6 +86,7 @@ const CommentDotDropdown = ({
           </button>
         )}
       </div>
+        {showEditModal ?  <EditModal id={commentId} cmtContent={content} getComments={getComments} setShowEditModal={setShowEditModal} isCommentPage={true}/> : null}
     </div>
   );
 };

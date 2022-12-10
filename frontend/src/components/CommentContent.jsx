@@ -10,6 +10,7 @@ const CommentContent = ({
   userId,
   setComments,
   getWantToEditComment,
+  getComments
 }) => {
   return (
     <div className="w-2/3 mx-auto mt-6 ">
@@ -25,6 +26,8 @@ const CommentContent = ({
             userId={userId}
             setComments={setComments}
             getWantToEditComment={getWantToEditComment}
+            content={content}
+            getComments={getComments}
           />
         </div>
 

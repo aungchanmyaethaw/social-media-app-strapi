@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { useAppContext } from "../context/AppContext";
 import axios from "axios";
-import { EditPost } from "./EditPost";
+import { EditModal } from "./EditModal";
 
 const DotDropdown = ({ id, userId }) => {
   const [showEditModal, setShowEditModal] = useState(false);
@@ -78,7 +78,7 @@ const DotDropdown = ({ id, userId }) => {
         </button>
       </div>
       {showEditModal && (
-        <EditPost postId={id} setShowEditModal={setShowEditModal} />
+        <EditModal id={id} setShowEditModal={setShowEditModal} />
       )}
     </div>
   );

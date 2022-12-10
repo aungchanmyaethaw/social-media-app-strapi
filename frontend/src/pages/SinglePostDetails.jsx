@@ -22,8 +22,8 @@ const SinglePostDetails = () => {
   });
   const [content, setContent] = useState("");
   const [comments, setComments] = useState([]);
-  const [wantToEditId, setWantToEditId] = useState(null);
-  const [wantToEditComment, setWantToEditComment] = useState({});
+  // const [wantToEditId, setWantToEditId] = useState(null);
+  // const [wantToEditComment, setWantToEditComment] = useState({});
   useEffect(() => {
     if (jwt === "") {
       navigate("/");
@@ -109,46 +109,46 @@ const SinglePostDetails = () => {
       console.log(e);
     }
   };
-  const editComment = async (e) => {
-    e.preventDefault();
-    const tempData = {
-      post_id: tempId,
-      user_id: authedUser.id,
-      content,
-      username: authedUser.username,
-    };
-    try {
-      await axios.put(
-        `http://localhost:1337/api/comments/${wantToEditId}`,
-        {
-          data: tempData,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      );
-      handleEditCancel();
-      getComments();
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const editComment = async (e) => {
+  //   e.preventDefault();
+  //   const tempData = {
+  //     post_id: tempId,
+  //     user_id: authedUser.id,
+  //     content,
+  //     username: authedUser.username,
+  //   };
+  //   try {
+  //     await axios.put(
+  //       `http://localhost:1337/api/comments/${wantToEditId}`,
+  //       {
+  //         data: tempData,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${jwt}`,
+  //         },
+  //       }
+  //     );
+  //     handleEditCancel();
+  //     getComments();
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
-  const getWantToEditComment = (commentId) => {
-    setWantToEditId(commentId);
-    const filteredComment = comments.find(
-      (comment) => comment.id === commentId
-    );
-    setWantToEditComment(filteredComment);
-  };
+  // const getWantToEditComment = (commentId) => {
+  //   setWantToEditId(commentId);
+  //   const filteredComment = comments.find(
+  //     (comment) => comment.id === commentId
+  //   );
+  //   setWantToEditComment(filteredComment);
+  // };
 
-  const handleEditCancel = () => {
-    setContent("");
-    setWantToEditId(false);
-    setWantToEditComment({});
-  };
+  // const handleEditCancel = () => {
+  //   setContent("");
+  //   setWantToEditId(false);
+  //   setWantToEditComment({});
+  // };
 
   return (
     <section className="min-h-screen pb-10">
@@ -162,11 +162,11 @@ const SinglePostDetails = () => {
               content={content}
               setContent={setContent}
               addComments={addComments}
-              wantToEditComment={wantToEditComment}
-              setWantToEditComment={setWantToEditComment}
-              wantToEditId={wantToEditId}
-              setWantToEditId={setWantToEditId}
-              editComment={editComment}
+              // wantToEditComment={wantToEditComment}
+              // setWantToEditComment={setWantToEditComment}
+              // wantToEditId={wantToEditId}
+              // setWantToEditId={setWantToEditId}
+              // editComment={editComment}
             />
           </div>
           <section className="mt-4 ">
@@ -176,7 +176,8 @@ const SinglePostDetails = () => {
                   key={comment.id}
                   {...comment}
                   setComments={setComments}
-                  getWantToEditComment={getWantToEditComment}
+                  getComments={getComments}
+                  // getWantToEditComment={getWantToEditComment}
                 />
               ))
             ) : (
