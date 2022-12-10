@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useAppContext } from "../context/AppContext";
 import axios from "axios";
 import { RxCross2 } from 'react-icons/rx'
+import { useParams } from "react-router-dom";
 
 // id CmtId or PostId
 export const EditModal = ({ 
   id,
   setShowEditModal,
-  cmtContent = '',
-  getComments,
   isCommentPage = false
 }) => {
   const [content, setContent] = useState("");
-  const { jwt, getPosts } = useAppContext();
+  const { jwt, getPosts, getComments } = useAppContext();
+  const postId = useParams();
 
   useEffect(() => {
-    isCommentPage ? setContent(cmtContent) : getSinglePost() ;
+    isCommentPage ? getSingleComment() : getSinglePost() ;
   }, []);
 
   const getSinglePost = async () => {
@@ -30,7 +30,18 @@ export const EditModal = ({
     setContent(data.data.attributes.content);
   };
 
-  const saveComment = (e) => {
+  const getSingleComment = async () => {
+    const { data } = await axios.get(
+      `http://localhost:1337/api/comments/${id}`,
+      {
+        headers : {
+          Authorization : `Bearer ${jwt}`,
+        }
+      }
+    );
+    setContent(data.data.attributes.content);  }
+
+    const saveComment = (e) => {
     e.preventDefault();
     const newContent = {
       content,
@@ -49,8 +60,8 @@ export const EditModal = ({
         }
       );
       setShowEditModal(false);
+      getComments(postId.id);
       setContent("");
-      getComments();
     }
     catch (e) {
       console.log(e);
@@ -76,8 +87,8 @@ export const EditModal = ({
         }
       );
       setShowEditModal(false);
-      setContent('');
       getPosts();
+      setContent('');
     } catch (e) {
       console.log(e);
     }

@@ -9,7 +9,7 @@ import CommentInput from "../components/CommentInput";
 import CommentContent from "../components/CommentContent";
 import axios from "axios";
 const SinglePostDetails = () => {
-  const { jwt, authedUser } = useAppContext();
+  const { jwt, authedUser, getComments, comments, setComments} = useAppContext();
   const navigate = useNavigate();
   const { id } = useParams();
   const tempId = parseInt(id);
@@ -21,7 +21,6 @@ const SinglePostDetails = () => {
     createdAt: "",
   });
   const [content, setContent] = useState("");
-  const [comments, setComments] = useState([]);
   // const [wantToEditId, setWantToEditId] = useState(null);
   // const [wantToEditComment, setWantToEditComment] = useState({});
   useEffect(() => {
@@ -29,7 +28,7 @@ const SinglePostDetails = () => {
       navigate("/");
     } else {
       getSinglePost();
-      getComments();
+      getComments(id);
     }
   }, [jwt]);
 
@@ -54,33 +53,7 @@ const SinglePostDetails = () => {
     setSinglePost(tempObj);
   };
 
-  const getComments = async () => {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:1337/api/comments?filters[post_id][$eq]=${id}&sort=createdAt:desc`,
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      );
-
-      setComments(
-        data.data.map((comment) => {
-          return {
-            id: comment.id,
-            userId: comment.attributes.user_id,
-            postId: comment.attributes.post_id,
-            username: comment.attributes.username,
-            content: comment.attributes.content,
-            createdAt: handleDateFormat(comment.attributes.updatedAt),
-          };
-        })
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  
 
   const addComments = async (e) => {
     e.preventDefault();
@@ -104,7 +77,7 @@ const SinglePostDetails = () => {
         }
       );
       setContent("");
-      getComments();
+      getComments(id);
     } catch (e) {
       console.log(e);
     }
@@ -175,8 +148,6 @@ const SinglePostDetails = () => {
                 <CommentContent
                   key={comment.id}
                   {...comment}
-                  setComments={setComments}
-                  getComments={getComments}
                   // getWantToEditComment={getWantToEditComment}
                 />
               ))

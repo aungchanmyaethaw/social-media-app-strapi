@@ -8,8 +8,7 @@ import { handleDateFormat } from "../utils";
 
 
 const SideBarPage = () => {
-    const { id } = useParams();
-    console.log(id );
+    const { sideBarId } = useParams();
     const { posts, setPosts, jwt, authedUser } = useAppContext();
     const [content, setContent] = useState('');
 
@@ -52,7 +51,7 @@ const SideBarPage = () => {
     }
   }
 
-  if(id === 'newfeeds') {
+  if(sideBarId === 'newfeeds') {
     return (
     <>
     <Whats
@@ -75,7 +74,7 @@ const SideBarPage = () => {
     return (
         <div className="w-full flex h-64 items-center justify-center">
              <h1 className="text-center text-3xl font-head text-primary capitalize">
-                {id} Page
+                {sideBarId} Page
              </h1>
         </div>
     )

@@ -9,12 +9,9 @@ const CommentDotDropdown = ({
   commentId,
   postId,
   userId,
-  setComments,
-  content,
-  getComments
   // getWantToEditComment,
 }) => {
-  const { authedUser, jwt } = useAppContext();
+  const { authedUser, jwt, setComments } = useAppContext();
   const [postOwnerId, setPostOwnerId] = useState(0);
   const [showEditModal, setShowEditModal] = useState(false);
 
@@ -71,7 +68,7 @@ const CommentDotDropdown = ({
       >
         {authedUser.id === userId && (
           <button
-            className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
+            className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary mb-2 hover:bg-dark-200 hover:text-primary btn-xs h-2"
             onClick={() => setShowEditModal(true)}
           >
             Edit
@@ -79,14 +76,14 @@ const CommentDotDropdown = ({
         )}
         {isAllowed && (
           <button
-            className="btn btn-xs bg-primary text-white hover:bg-orange-700 hover:scale-110 h-2 mt-2"
+            className="btn btn-xs bg-primary text-white hover:bg-orange-700 hover:scale-110 h-2"
             onClick={deleteComment}
           >
             Delete
           </button>
         )}
       </div>
-        {showEditModal ?  <EditModal id={commentId} cmtContent={content} getComments={getComments} setShowEditModal={setShowEditModal} isCommentPage={true}/> : null}
+        {showEditModal ?  <EditModal id={commentId} setShowEditModal={setShowEditModal} isCommentPage={true}/> : null}
     </div>
   );
 };

@@ -17,7 +17,7 @@ const Whats = ({ createPost, setContent, content }) => {
         <div className="flex justify-end">
           <div className="avatar">
             <div className="w-12 h-12 rounded-full outline outline-2 outline-primary">
-              <img src="public/thumpnail.png" alt="Profile" />
+              <img src="../../public/thumpnail.png" alt="Profile" />
             </div>
             <textarea
               className="textarea outline-1 focus:ring-offset-1 focus:ring-1 focus:ring-primary/75 outline outline-primary shadow-md shadow-primary bg-dark-200 text-base text-white font-body w-[30rem] h-16 ml-2 py-2"

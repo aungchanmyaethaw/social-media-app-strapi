@@ -16,7 +16,7 @@ const DotDropdown = ({ id, userId }) => {
         },
       });
 
-      const posts = await getPosts();
+      // const posts = await getPosts();
 
       getPosts();
     } catch (e) {
