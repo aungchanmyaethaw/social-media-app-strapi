@@ -10,7 +10,7 @@ const Profile = ({ username, nav = false, singlePost = false }) => {
       )}
       <div className="avatar">
         <div className="w-10 h-10 rounded-full outline outline-2 outline-primary">
-          <img src="../../public/thumpnail.png" alt="Profile" />
+          <img src="../../src/images/thumpnail.png" alt="Profile" />
         </div>
       </div>
       {singlePost ? (
