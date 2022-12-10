@@ -15,6 +15,8 @@ export function AppProvider({ children }) {
   const [jwt, setJwt] = useState("");
   const [authedUser, setAuthedUser] = useState({});
   const [posts, setPosts] = useState([]);
+  const [comments, setComments] = useState([]);
+
 
   //  Auth
 
@@ -80,6 +82,34 @@ export function AppProvider({ children }) {
     }
   }
 
+  const getComments = async (id) => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:1337/api/comments?filters[post_id][$eq]=${id}&sort=createdAt:desc`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      setComments(
+        data.data.map((comment) => {
+          return {
+            id: comment.id,
+            userId: comment.attributes.user_id,
+            postId: comment.attributes.post_id,
+            username: comment.attributes.username,
+            content: comment.attributes.content,
+            createdAt: handleDateFormat(comment.attributes.updatedAt),
+          };
+        })
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const handleJwt = (jwt) => {
     setJwt(jwt);
   };
@@ -98,7 +128,11 @@ export function AppProvider({ children }) {
         getPosts,
         posts,
         setPosts,
+        getComments,
+        comments,
+        setComments,
       }}
+
     >
       {children}
     </AppContext.Provider>

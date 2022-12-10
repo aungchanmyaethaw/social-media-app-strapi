@@ -2,15 +2,18 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { useAppContext } from "../context/AppContext";
+import { EditModal } from "./EditModal";
+
+
 const CommentDotDropdown = ({
   commentId,
   postId,
   userId,
-  setComments,
-  getWantToEditComment,
+  // getWantToEditComment,
 }) => {
-  const { authedUser, jwt } = useAppContext();
+  const { authedUser, jwt, setComments } = useAppContext();
   const [postOwnerId, setPostOwnerId] = useState(0);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   useEffect(() => {
     getSinglepostId();
@@ -65,21 +68,22 @@ const CommentDotDropdown = ({
       >
         {authedUser.id === userId && (
           <button
-            className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
-            onClick={() => getWantToEditComment(commentId)}
+            className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary mb-2 hover:bg-dark-200 hover:text-primary btn-xs h-2"
+            onClick={() => setShowEditModal(true)}
           >
             Edit
           </button>
         )}
         {isAllowed && (
           <button
-            className="btn btn-xs bg-primary text-white hover:bg-orange-700 hover:scale-110 h-2 mt-2"
+            className="btn btn-xs bg-primary text-white hover:bg-orange-700 hover:scale-110 h-2"
             onClick={deleteComment}
           >
             Delete
           </button>
         )}
       </div>
+        {showEditModal ?  <EditModal id={commentId} setShowEditModal={setShowEditModal} isCommentPage={true}/> : null}
     </div>
   );
 };

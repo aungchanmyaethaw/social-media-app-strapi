@@ -8,8 +8,6 @@ const CommentContent = ({
   createdAt,
   postId,
   userId,
-  setComments,
-  getWantToEditComment,
 }) => {
   return (
     <div className="w-2/3 mx-auto mt-6 ">
@@ -23,12 +21,11 @@ const CommentContent = ({
             commentId={id}
             postId={postId}
             userId={userId}
-            setComments={setComments}
-            getWantToEditComment={getWantToEditComment}
+            content={content}
           />
         </div>
 
-        <p className="mx-6 mt-2 text-left font-body text-indent-4 text-white py-4">
+        <p className="mx-6 py-4 text-left font-body text-indent-4 text-white">
           {content}
         </p>
       </div>

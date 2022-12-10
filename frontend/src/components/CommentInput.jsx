@@ -4,11 +4,11 @@ const CommentInput = ({
   content,
   setContent,
   addComments,
-  wantToEditComment,
-  setWantToEditComment,
-  wantToEditId,
-  setWantToEditId,
-  editComment,
+  // wantToEditComment,
+  // setWantToEditComment,
+  // wantToEditId,
+  // setWantToEditId,
+  // editComment,
 }) => {
   const [isEmpty, setIsEmpty] = useState(true);
 
@@ -20,17 +20,17 @@ const CommentInput = ({
     }
   }, [content]);
 
-  useEffect(() => {
-    if (wantToEditId) {
-      setContent(wantToEditComment.content);
-    }
-  }, [wantToEditId]);
+  // useEffect(() => {
+  //   if (wantToEditId) {
+  //     setContent(wantToEditComment.content);
+  //   }
+  // }, [wantToEditId]);
 
-  const handleEditCancel = () => {
-    setContent("");
-    setWantToEditId(false);
-    setWantToEditComment({});
-  };
+  // const handleEditCancel = () => {
+  //   setContent("");
+  //   setWantToEditId(false);
+  //   setWantToEditComment({});
+  // };
 
   return (
     <div className="w-full flex-start">
@@ -49,7 +49,7 @@ const CommentInput = ({
           </div>
         </div>
         {/* Button */}
-        {wantToEditId ? (
+        {/* {wantToEditId ? (
           <div className="flex justify-end mx-auto space-x-2 mt-4">
             <button
               className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
@@ -67,7 +67,7 @@ const CommentInput = ({
               Edit Comment
             </button>
           </div>
-        ) : (
+        ) : ( */}
           <div className="flex justify-end mx-auto space-x-2 mt-4">
             <button
               className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
@@ -85,7 +85,7 @@ const CommentInput = ({
               Comment
             </button>
           </div>
-        )}
+        {/* )} */}
       </form>
     </div>
   );

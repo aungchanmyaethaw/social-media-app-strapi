@@ -9,7 +9,7 @@ import CommentInput from "../components/CommentInput";
 import CommentContent from "../components/CommentContent";
 import axios from "axios";
 const SinglePostDetails = () => {
-  const { jwt, authedUser } = useAppContext();
+  const { jwt, authedUser, getComments, comments, setComments} = useAppContext();
   const navigate = useNavigate();
   const { id } = useParams();
   const tempId = parseInt(id);
@@ -21,15 +21,14 @@ const SinglePostDetails = () => {
     createdAt: "",
   });
   const [content, setContent] = useState("");
-  const [comments, setComments] = useState([]);
-  const [wantToEditId, setWantToEditId] = useState(null);
-  const [wantToEditComment, setWantToEditComment] = useState({});
+  // const [wantToEditId, setWantToEditId] = useState(null);
+  // const [wantToEditComment, setWantToEditComment] = useState({});
   useEffect(() => {
     if (jwt === "") {
       navigate("/");
     } else {
       getSinglePost();
-      getComments();
+      getComments(id);
     }
   }, [jwt]);
 
@@ -54,33 +53,7 @@ const SinglePostDetails = () => {
     setSinglePost(tempObj);
   };
 
-  const getComments = async () => {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:1337/api/comments?filters[post_id][$eq]=${id}&sort=createdAt:desc`,
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      );
-
-      setComments(
-        data.data.map((comment) => {
-          return {
-            id: comment.id,
-            userId: comment.attributes.user_id,
-            postId: comment.attributes.post_id,
-            username: comment.attributes.username,
-            content: comment.attributes.content,
-            createdAt: handleDateFormat(comment.attributes.updatedAt),
-          };
-        })
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  
 
   const addComments = async (e) => {
     e.preventDefault();
@@ -104,51 +77,51 @@ const SinglePostDetails = () => {
         }
       );
       setContent("");
-      getComments();
+      getComments(id);
     } catch (e) {
       console.log(e);
     }
   };
-  const editComment = async (e) => {
-    e.preventDefault();
-    const tempData = {
-      post_id: tempId,
-      user_id: authedUser.id,
-      content,
-      username: authedUser.username,
-    };
-    try {
-      await axios.put(
-        `http://localhost:1337/api/comments/${wantToEditId}`,
-        {
-          data: tempData,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      );
-      handleEditCancel();
-      getComments();
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const editComment = async (e) => {
+  //   e.preventDefault();
+  //   const tempData = {
+  //     post_id: tempId,
+  //     user_id: authedUser.id,
+  //     content,
+  //     username: authedUser.username,
+  //   };
+  //   try {
+  //     await axios.put(
+  //       `http://localhost:1337/api/comments/${wantToEditId}`,
+  //       {
+  //         data: tempData,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${jwt}`,
+  //         },
+  //       }
+  //     );
+  //     handleEditCancel();
+  //     getComments();
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
-  const getWantToEditComment = (commentId) => {
-    setWantToEditId(commentId);
-    const filteredComment = comments.find(
-      (comment) => comment.id === commentId
-    );
-    setWantToEditComment(filteredComment);
-  };
+  // const getWantToEditComment = (commentId) => {
+  //   setWantToEditId(commentId);
+  //   const filteredComment = comments.find(
+  //     (comment) => comment.id === commentId
+  //   );
+  //   setWantToEditComment(filteredComment);
+  // };
 
-  const handleEditCancel = () => {
-    setContent("");
-    setWantToEditId(false);
-    setWantToEditComment({});
-  };
+  // const handleEditCancel = () => {
+  //   setContent("");
+  //   setWantToEditId(false);
+  //   setWantToEditComment({});
+  // };
 
   return (
     <section className="min-h-screen pb-10">
@@ -162,11 +135,11 @@ const SinglePostDetails = () => {
               content={content}
               setContent={setContent}
               addComments={addComments}
-              wantToEditComment={wantToEditComment}
-              setWantToEditComment={setWantToEditComment}
-              wantToEditId={wantToEditId}
-              setWantToEditId={setWantToEditId}
-              editComment={editComment}
+              // wantToEditComment={wantToEditComment}
+              // setWantToEditComment={setWantToEditComment}
+              // wantToEditId={wantToEditId}
+              // setWantToEditId={setWantToEditId}
+              // editComment={editComment}
             />
           </div>
           <section className="mt-4 ">
@@ -175,8 +148,7 @@ const SinglePostDetails = () => {
                 <CommentContent
                   key={comment.id}
                   {...comment}
-                  setComments={setComments}
-                  getWantToEditComment={getWantToEditComment}
+                  // getWantToEditComment={getWantToEditComment}
                 />
               ))
             ) : (
