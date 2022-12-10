@@ -23,7 +23,7 @@ React Router is used to navigate between pages.
 
 ##### Search Feature
 
-    - Able to search the post by username
+- Able to search the post by username
 
 ##### Comment Page
 
@@ -32,9 +32,9 @@ React Router is used to navigate between pages.
 
 ### Tech Stack
 
-React hooks
-Strapi
-Axios
+- React hooks
+- Strapi
+- Axios
 
 ## To start application
 
