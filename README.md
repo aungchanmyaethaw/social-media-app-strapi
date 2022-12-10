@@ -1,7 +1,7 @@
 # 🚀 Getting started with WeShare App
 
 This is a social media app. Frontend folder handles the client side and Backend Folder handles server side.
-React Router is used to navigate between pages.
+Strapi is used to handle database. UseContext hook is used to store client side data. React Router is used to navigate between pages.
 
 #### User can do the following features:
 
