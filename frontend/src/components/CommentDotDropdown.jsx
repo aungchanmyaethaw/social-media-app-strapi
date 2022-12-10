@@ -4,13 +4,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { useAppContext } from "../context/AppContext";
 import { EditModal } from "./EditModal";
 
-
-const CommentDotDropdown = ({
-  commentId,
-  postId,
-  userId,
-  // getWantToEditComment,
-}) => {
+const CommentDotDropdown = ({ commentId, postId, userId }) => {
   const { authedUser, jwt, setComments } = useAppContext();
   const [postOwnerId, setPostOwnerId] = useState(0);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -83,7 +77,13 @@ const CommentDotDropdown = ({
           </button>
         )}
       </div>
-        {showEditModal ?  <EditModal id={commentId} setShowEditModal={setShowEditModal} isCommentPage={true}/> : null}
+      {showEditModal ? (
+        <EditModal
+          id={commentId}
+          setShowEditModal={setShowEditModal}
+          isCommentPage={true}
+        />
+      ) : null}
     </div>
   );
 };

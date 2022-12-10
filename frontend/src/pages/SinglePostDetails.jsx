@@ -9,7 +9,7 @@ import CommentInput from "../components/CommentInput";
 import CommentContent from "../components/CommentContent";
 import axios from "axios";
 const SinglePostDetails = () => {
-  const { jwt, authedUser, getComments, comments, setComments} = useAppContext();
+  const { jwt, authedUser, getComments, comments } = useAppContext();
   const navigate = useNavigate();
   const { id } = useParams();
   const tempId = parseInt(id);
@@ -21,8 +21,7 @@ const SinglePostDetails = () => {
     createdAt: "",
   });
   const [content, setContent] = useState("");
-  // const [wantToEditId, setWantToEditId] = useState(null);
-  // const [wantToEditComment, setWantToEditComment] = useState({});
+
   useEffect(() => {
     if (jwt === "") {
       navigate("/");
@@ -53,8 +52,6 @@ const SinglePostDetails = () => {
     setSinglePost(tempObj);
   };
 
-  
-
   const addComments = async (e) => {
     e.preventDefault();
     const tempData = {
@@ -82,74 +79,25 @@ const SinglePostDetails = () => {
       console.log(e);
     }
   };
-  // const editComment = async (e) => {
-  //   e.preventDefault();
-  //   const tempData = {
-  //     post_id: tempId,
-  //     user_id: authedUser.id,
-  //     content,
-  //     username: authedUser.username,
-  //   };
-  //   try {
-  //     await axios.put(
-  //       `http://localhost:1337/api/comments/${wantToEditId}`,
-  //       {
-  //         data: tempData,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${jwt}`,
-  //         },
-  //       }
-  //     );
-  //     handleEditCancel();
-  //     getComments();
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
-  // const getWantToEditComment = (commentId) => {
-  //   setWantToEditId(commentId);
-  //   const filteredComment = comments.find(
-  //     (comment) => comment.id === commentId
-  //   );
-  //   setWantToEditComment(filteredComment);
-  // };
-
-  // const handleEditCancel = () => {
-  //   setContent("");
-  //   setWantToEditId(false);
-  //   setWantToEditComment({});
-  // };
 
   return (
     <section className="min-h-screen pb-10">
       <Navbar username={authedUser.username} isCommentPage={true} />
       <div className="flex">
         <Sidebar />
-        <div className="basis-3/4 ml-[3px]  min-h-screen">
+        <div className="basis-3/4 ml-[3px]  min-h-screen border-l-[3px]">
           <div className="mt-[32px] bg-dark-200">
             <SinglePost {...singlePost} isCommentPage={true} />
             <CommentInput
               content={content}
               setContent={setContent}
               addComments={addComments}
-              // wantToEditComment={wantToEditComment}
-              // setWantToEditComment={setWantToEditComment}
-              // wantToEditId={wantToEditId}
-              // setWantToEditId={setWantToEditId}
-              // editComment={editComment}
             />
           </div>
           <section className="mt-4 ">
             {comments.length !== 0 ? (
               comments?.map((comment) => (
-                <CommentContent
-                  key={comment.id}
-                  {...comment}
-                  // getWantToEditComment={getWantToEditComment}
-                />
+                <CommentContent key={comment.id} {...comment} />
               ))
             ) : (
               <p className="text-xl mx-auto font-head text-primary text-center">
