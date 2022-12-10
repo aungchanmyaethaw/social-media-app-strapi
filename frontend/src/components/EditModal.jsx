@@ -4,7 +4,7 @@ import axios from "axios";
 import { RxCross2 } from 'react-icons/rx'
 import { useParams } from "react-router-dom";
 
-// id CmtId or PostId
+// id CommentId or PostId
 export const EditModal = ({ 
   id,
   setShowEditModal,

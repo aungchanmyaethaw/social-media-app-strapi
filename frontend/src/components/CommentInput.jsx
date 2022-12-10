@@ -4,11 +4,6 @@ const CommentInput = ({
   content,
   setContent,
   addComments,
-  // wantToEditComment,
-  // setWantToEditComment,
-  // wantToEditId,
-  // setWantToEditId,
-  // editComment,
 }) => {
   const [isEmpty, setIsEmpty] = useState(true);
 
@@ -20,17 +15,7 @@ const CommentInput = ({
     }
   }, [content]);
 
-  // useEffect(() => {
-  //   if (wantToEditId) {
-  //     setContent(wantToEditComment.content);
-  //   }
-  // }, [wantToEditId]);
-
-  // const handleEditCancel = () => {
-  //   setContent("");
-  //   setWantToEditId(false);
-  //   setWantToEditComment({});
-  // };
+  
 
   return (
     <div className="w-full flex-start">
@@ -38,7 +23,7 @@ const CommentInput = ({
         <div className="flex justify-end">
           <div className="avatar">
             <div className="w-12 h-12 rounded-full outline outline-2 outline-primary">
-              <img src="../public/thumpnail.png" alt="Profile" />
+              <img src="../../src/images/thumpnail.png" alt="Profile" />
             </div>
             <textarea
               className="textarea outline-1 focus:ring-offset-1 focus:ring-1 focus:ring-primary/75 outline outline-primary shadow-md shadow-primary bg-dark-200 text-base text-white font-body w-[30rem] h-16 ml-2 py-2"
@@ -49,25 +34,7 @@ const CommentInput = ({
           </div>
         </div>
         {/* Button */}
-        {/* {wantToEditId ? (
-          <div className="flex justify-end mx-auto space-x-2 mt-4">
-            <button
-              className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
-              type="reset"
-              onClick={handleEditCancel}
-            >
-              Cancel Edit
-            </button>
-            <button
-              className="btn btn-xs hover:scale-110 hover:bg-white hover:text-black bg-primary text-white"
-              type="submit"
-              onClick={editComment}
-              disabled={isEmpty}
-            >
-              Edit Comment
-            </button>
-          </div>
-        ) : ( */}
+     
           <div className="flex justify-end mx-auto space-x-2 mt-4">
             <button
               className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
@@ -85,7 +52,6 @@ const CommentInput = ({
               Comment
             </button>
           </div>
-        {/* )} */}
       </form>
     </div>
   );
