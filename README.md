@@ -50,12 +50,12 @@ npm run develop
 yarn develop
 ```
 
-### `start` Start the client
+### `dev` Start the client
 
 ```
-npm run start
+npm run dev
 # or
-yarn start
+yarn dev
 ```
 
 ---
