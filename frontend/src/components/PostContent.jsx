@@ -142,7 +142,7 @@ const PostContent = ({
   return (
     <div className="w-11/12 pl-6 pr-6 mx-auto bg-dark-200 outline outline-1 outline-primary shadow-md shadow-primary rounded-lg -mt-8">
       <div className="flex justify-between pt-2">
-        <p className="text-[12px] -mt-1 text-gray-400 font-body">{createdAt}</p>
+        <p className="text-[12px] ml-1 text-gray-400 font-body">{createdAt}</p>
         {!isCommentPage && <DotDropdown userId={userId} id={id} />}
       </div>
 
@@ -155,7 +155,7 @@ const PostContent = ({
           {stars.length !== 0 ? (
             <>
               <AiFillStar color="#ee6640" />
-              <p className="ml-1"> {stars.length} </p>
+              <p className="ml-1 mt-1"> {stars.length} </p>
             </>
           ) : null}
         </div>

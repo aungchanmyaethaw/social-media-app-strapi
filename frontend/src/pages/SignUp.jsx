@@ -60,7 +60,7 @@ const SignUp = () => {
             htmlFor="username"
             className="text-white mb-4 font-body text-lg"
           >
-            Username
+            Name
           </label>
           <input
             type="text"

@@ -62,7 +62,7 @@ const DotDropdown = ({ id, userId }) => {
       >
         {authedUser.id === userId && (
           <button
-            className="btn btn-outline mb-2 hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
+            className="btn btn-outline mb-2 hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary text-white outline-white btn-xs h-2"
             onClick={() => setShowEditModal(true)}
           >
             Edit

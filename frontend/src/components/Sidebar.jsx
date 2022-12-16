@@ -14,7 +14,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="basis-1/4 sticky top-16 h-fit  flex space-y-8 justify-between items-center flex-col py-10 px-8">
+    <aside className="basis-1/4 sticky top-16 h-fit  flex space-y-4 justify-between items-center flex-col py-6 px-8">
       <SideBarList />
 
       <div className="w-3/4 flex justify-start">

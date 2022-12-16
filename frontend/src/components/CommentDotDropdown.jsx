@@ -62,7 +62,7 @@ const CommentDotDropdown = ({ commentId, postId, userId }) => {
       >
         {authedUser.id === userId && (
           <button
-            className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary mb-2 hover:bg-dark-200 hover:text-primary btn-xs h-2"
+            className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary mb-2 text-white outline-white hover:bg-dark-200 hover:text-primary btn-xs h-2"
             onClick={() => setShowEditModal(true)}
           >
             Edit

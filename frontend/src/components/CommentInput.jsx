@@ -37,14 +37,14 @@ const CommentInput = ({
      
           <div className="flex justify-end mx-auto space-x-2 mt-4">
             <button
-              className="btn btn-outline hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
+              className="btn btn-outline text-white outline-white hover:outline hover:-outline-offset-1 hover:outline-1 hover:outline-primary hover:bg-dark-200 hover:text-primary btn-xs h-2"
               type="reset"
               onClick={() => setContent("")}
             >
               Clear
             </button>
             <button
-              className="btn btn-xs hover:scale-110 hover:bg-white hover:text-black bg-primary text-white"
+              className="btn btn-xs hover:scale-110 hover:bg-orange-700 bg-primary text-white disabled:bg-gray-400/20 disabled:text-gray-500/20"
               type="submit"
               onClick={addComments}
               disabled={isEmpty}

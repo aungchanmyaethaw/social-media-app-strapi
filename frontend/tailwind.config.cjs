@@ -11,8 +11,8 @@ module.exports = {
         
       },
       fontFamily: {
-        head: ["Roboto", "serif"],
-        body: ["Josefin Sans", "sans-serif"],
+        head: ['Roboto' , "serif"],
+        body: ["Josefin Sans", "serif"],
       },
     },
   },

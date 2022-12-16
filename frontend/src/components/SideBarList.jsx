@@ -73,9 +73,9 @@ function CustomLink({to, children}) {
 
    return (
       <Link 
-    className={isMatch ? "flex text-primary flex-start w-3/4 text-lg font-head gap-10" 
+    className={isMatch ? "flex text-primary flex-start w-3/4 text-lg font-head gap-10 py-2 px-6" 
     :
-    "flex text-white flex-start w-3/4 text-lg font-head gap-10 hover:scale-95"   
+    "flex text-white flex-start w-3/4 text-lg font-head gap-10 hover:scale-95 hover:shadow-sm hover:shadow-white py-2 px-6 rounded-md hover:border-t hover:border-white"    
     }
     to = {{
       pathname : to
